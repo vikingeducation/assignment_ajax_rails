@@ -1,11 +1,9 @@
 class ReviewsController < ApplicationController
 
-  respond_to :html, :json
-
   def index
     @reviews = Review.all
 
-    respond_to |format|
+    respond_to do |format|
       format.html
       format.json { render :json => @reviews }
     end
