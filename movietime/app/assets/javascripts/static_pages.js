@@ -50,12 +50,11 @@ var myAjax = {
     });
 
           //AJAX THREE: USER INPUT
-    $("#movies-form").submit(function(e){
-      console.log("listen");
+    $("#movie-form").submit(function(e){
       var postData = $(this).serializeArray();
-      console.log(postData);
       postData = ({name: postData[0].value, release_date: postData[1].value });
       postData = JSON.stringify(postData);
+      console.log(postData);
       $.ajax( {
         type: "POST",
         url: "/movies.json",
@@ -84,8 +83,7 @@ var myAjax = {
   }
 }
 
-// $( document ).ready(function() {
-//   myAjax.init();
-// });
+$( document ).ready(function() {
+  myAjax.init();
+});
 
-$(document).on('page:load', myAjax.init());

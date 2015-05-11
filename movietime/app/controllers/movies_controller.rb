@@ -11,11 +11,12 @@ class MoviesController < ApplicationController
   end
 
   def create
-    binding.pry
-
+    @new_movie = Movie.create(
+        name: params["movie"]["name"],
+        release_date: params["movie"]["release_date"]
+      )
     respond_to do |format|
-      format.json
-
+      format.json { render :json => @new_movie }
     end
   end
 
