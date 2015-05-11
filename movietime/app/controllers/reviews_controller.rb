@@ -12,7 +12,12 @@ class ReviewsController < ApplicationController
   end
 
   def create
-
+    Review.create(
+      reviewer_name: params["review"]["reviewer_name"],
+      movie_id: params["review"]["movie_id"].to_i,
+      review_text: params["review"]["review_text"]
+      )
+    redirect_to reviews_path
   end
 
   def destroy

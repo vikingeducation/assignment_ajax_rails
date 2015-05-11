@@ -9,7 +9,7 @@ Just like Posts in Danebook, there should be a review submission form at the top
 
 <% @desc_reviews.each do |review| %>
   <h4>Review by: <strong><%= review.reviewer_name %></strong></h4>
-  <p>Movie: <%= review.title %></p>
+  <p>Movie: <%= review.movie.name %></p>
   <p>Review: <%= review.review_text %></p>
   <%= link_to "delete review", review_path(review.id), :method=>:delete %>
   <br>
