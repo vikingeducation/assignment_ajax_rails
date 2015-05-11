@@ -1,16 +1,20 @@
-<!-- Build out the index page for all Reviews (not nested under a particular movie). It should show reviews ordered with the latest on top, much like Posts in Danebook but uglier. Each review should be a partial, to make this easier later.
-Just like Posts in Danebook, there should be a review submission form at the top of the page, with an options dropdown to pick from existing movies. -->
-<%= form_for :review do |f| %>
+<!-- Now add remote:true to the form and to the link. Build out your controller actions to respond_to :js, and build the .js.erb templates necessary to add and delete reviews without leaving the page. New reviews should pop up on the top of the page, and the form should now be clear and ready to leave another review. -->
+<%= form_for :review, :remote => true do |f| %>
   Reviewer's Name: <%= f.text_field :reviewer_name %><br />
   Movie Reviewed : <%= collection_select(:review, :movie_id, Movie.all, :id, :name, prompt: true) %><br />
   Review Text : <%= f.text_area :review_text %><br />
   <%= f.submit %>
 <% end %>
 
+<div id="partial-reviews">
+
+</div>
 <% @desc_reviews.each do |review| %>
-  <h4>Review by: <strong><%= review.reviewer_name %></strong></h4>
-  <p>Movie: <%= review.movie.name %></p>
-  <p>Review: <%= review.review_text %></p>
-  <%= link_to "delete review", review_path(review.id), :method=>:delete %>
-  <br>
+  <%= render partial: "review", locals: {review: review} %>
 <% end %>
+
+
+
+
+
+

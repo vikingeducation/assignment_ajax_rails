@@ -18,11 +18,19 @@ class ReviewsController < ApplicationController
       review_text: params["review"]["review_text"]
       )
     redirect_to reviews_path
+    respond_to do |format|
+      # really really that's it
+      format.js {}
+    end
   end
 
   def destroy
     @review = Review.find(params[:id].to_i)
     @review.destroy
     redirect_to reviews_path
+    respond_to do |format|
+      # really really that's it
+      format.js {}
+    end
   end
 end

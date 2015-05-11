@@ -11,6 +11,7 @@ class MoviesController < ApplicationController
   end
 
   def create
+    respond_to :html, :js
     @new_movie = Movie.create(
         name: params["movie"]["name"],
         release_date: params["movie"]["release_date"]

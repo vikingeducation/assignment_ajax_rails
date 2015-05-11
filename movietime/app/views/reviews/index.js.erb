@@ -1,0 +1,3 @@
+//FIX UP THIS FORM TO TAKE IN ALL THE REVIEWS AND RENDER THEM
+
+$("#my-reviews").prepend("<%= escape_javascript(render :partial => 'task', :locals => { :task => @task } ) %>")
