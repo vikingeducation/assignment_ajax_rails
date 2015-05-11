@@ -51,6 +51,7 @@ var myAjax = {
 
           //AJAX THREE: USER INPUT
     $("#movies-form").submit(function(e){
+      console.log("listen");
       var postData = $(this).serializeArray();
       console.log(postData);
       postData = ({name: postData[0].value, release_date: postData[1].value });
