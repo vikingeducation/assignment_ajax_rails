@@ -30,10 +30,11 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:id].to_i)
+    @review_id = @review.id
     @review.destroy
-    redirect_to reviews_path
     respond_to do |format|
       # really really that's it
+      format.html {redirect_to reviews_path}
       format.js {}
     end
   end
