@@ -11,5 +11,6 @@ Just like Posts in Danebook, there should be a review submission form at the top
   <h4>Review by: <strong><%= review.reviewer_name %></strong></h4>
   <p>Movie: <%= review.title %></p>
   <p>Review: <%= review.review_text %></p>
+  <%= link_to "delete review", review_path(review.id), :method=>:delete %>
   <br>
 <% end %>

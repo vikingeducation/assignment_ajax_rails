@@ -10,4 +10,14 @@ class ReviewsController < ApplicationController
       format.json { render :json => @reviews }
     end
   end
+
+  def create
+
+  end
+
+  def destroy
+    @review = Review.find(params[:id].to_i)
+    @review.destroy
+    redirect_to reviews_path
+  end
 end
