@@ -8,19 +8,23 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render :json => @reviews }
+      format.js {
+        jfdkls;a
+      }
     end
   end
 
   def create
-    Review.create(
-      reviewer_name: params["review"]["reviewer_name"],
-      movie_id: params["review"]["movie_id"].to_i,
-      review_text: params["review"]["review_text"]
-      )
-    redirect_to reviews_path
+    @review = Review.new(
+          reviewer_name: params["review"]["reviewer_name"],
+          movie_id: params["review"]["movie_id"].to_i,
+          review_text: params["review"]["review_text"]
+        )
     respond_to do |format|
+      if @review.save
       # really really that's it
-      format.js {}
+        format.js {}
+      end
     end
   end
 
