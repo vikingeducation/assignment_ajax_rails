@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+
   def index
     @reviews = Review.all
 
@@ -7,4 +8,5 @@ class ReviewsController < ApplicationController
       format.json { render json: @reviews }
     end
   end
+
 end

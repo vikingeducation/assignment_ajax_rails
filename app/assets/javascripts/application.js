@@ -26,7 +26,6 @@ var jaxCalls = {
       "http://localhost:3000/movies.json",
 
       function(data) {
-        alert("get");
         data.forEach(function(movie) {
           $("#movies").append("<tr><td>" + movie.name + "</td><td>" +
                               movie.release_date + "</td></tr>");
@@ -42,7 +41,6 @@ var jaxCalls = {
       "http://localhost:3000/reviews.json",
 
       function(data) {
-        alert("get");
         data.forEach(function(review) {
           $("#reviews").append("<tr><td>" + review.reviewer_name + "</td><td>" +
                               review.title + "</td><td>" +
@@ -53,6 +51,26 @@ var jaxCalls = {
         });
       }
     );
+  },
+
+  postMovie: function(submitEvent) {
+    submitEvent.preventDefault();
+
+    var $form = $("#new-movie"),
+                name = $form.find("input[name='name']").val();
+
+    var release_date = Date.now();
+
+    var posting = $.post(
+                    "http://localhost:3000/movies.json",
+                    JSON.stringify({ name: name, release_date: release_date })
+                  );
+
+    posting.done(function(data){
+      $("#movies > tbody > tr:first").before("<tr><td>" + data.name +
+                                             "</td><td>" + data.release_date +
+                                             "</td></tr>");
+    });
   }
 
 };
@@ -60,4 +78,8 @@ var jaxCalls = {
 $(document).on('page:change', function() {
   jaxCalls.getMovies();
   jaxCalls.getReviews();
+
+  $("#new-movie").submit(function(submit){
+    jaxCalls.postMovie(submit);
+  });
 });
