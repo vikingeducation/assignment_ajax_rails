@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//=require jquery-ui
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
@@ -59,11 +60,12 @@ var jaxCalls = {
     var $form = $("#new-movie"),
                 name = $form.find("input[name='name']").val();
 
-    var release_date = Date.now();
+    var unformatted = new Date($form.find("input[name='datepick']").val());
+    var release_date = unformatted.toISOString();
 
     var posting = $.post(
                     "http://localhost:3000/movies.json",
-                    JSON.stringify({ name: name, release_date: release_date })
+                    { name: name, release_date: release_date }
                   );
 
     posting.done(function(data){
