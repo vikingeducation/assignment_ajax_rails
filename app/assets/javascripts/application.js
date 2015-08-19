@@ -33,9 +33,31 @@ var jaxCalls = {
         });
       }
     );
+  },
+
+  getReviews: function() {
+    $("#reviews").html("");
+
+    $.get(
+      "http://localhost:3000/reviews.json",
+
+      function(data) {
+        alert("get");
+        data.forEach(function(review) {
+          $("#reviews").append("<tr><td>" + review.reviewer_name + "</td><td>" +
+                              review.title + "</td><td>" +
+                              review.review_text + "</td><td>" +
+                              review.review_date + "</td><td>" +
+                              review.movie_id + "</td></tr>"
+                            );
+        });
+      }
+    );
   }
+
 };
 
 $(document).on('page:change', function() {
   jaxCalls.getMovies();
+  jaxCalls.getReviews();
 });
