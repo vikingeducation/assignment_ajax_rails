@@ -1,7 +1,37 @@
 <h1>Reviews</h1>
 
-<ul>
+<%= form_for(@review) do |f| %>
+  <div class="field">
+    <%= f.label :reviewer_name %><br>
+    <%= f.text_field :reviewer_name %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :review_text %><br>
+    <%= f.text_area :review_text %>
+  </div>
+  <div class="field">
+    <%= f.label "Which movie is this review for?" %><br>
+    <%= select("review", "movie_id", Movie.all.collect {|m| [ m.name, m.id ] }, { include_blank: true }) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<table id="reviews">
+  <tr>
+    <th>Reviewer Name</th>
+    <th>Review Title</th>
+    <th>Review Content</th>
+    <th>Review Date</th>
+    <th>Corresponding Movie</th>
+  </tr>
+
   <% @reviews.each do |review| %>
-    <li><%= review.title %></li>
+    <%= render review %>
   <% end %>
-</ul>
+</table>
