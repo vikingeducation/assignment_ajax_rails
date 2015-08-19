@@ -4,4 +4,5 @@
   <td><%= review.review_text %></td>
   <td><%= review.review_date %></td>
   <td><%= review.movie_id %></td>
+  <td><%= link_to "Delete this review", review_path(review.id), method: :delete %></td>
 </tr>

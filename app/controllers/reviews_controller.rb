@@ -10,6 +10,24 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def show
+
+  end
+
+  def destroy
+    @review = Review.find(params["id"])
+
+    respond_to do |format|
+      if @review.destroy
+        format.html { redirect_to :back }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to root_path }
+        format.json { render json: @review.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def new
     @review = Review.new
   end
