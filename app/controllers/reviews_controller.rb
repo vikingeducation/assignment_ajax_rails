@@ -16,13 +16,16 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params["id"])
+    @review_id = @review.id
 
     respond_to do |format|
       if @review.destroy
         format.html { redirect_to :back }
+        format.js { }
         format.json { head :no_content }
       else
         format.html { redirect_to root_path }
+        format.js { head :none }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end
@@ -39,9 +42,11 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       if @review.save
         format.html { redirect_to :back rescue redirect_to reviews_path }
+        format.js { }
         format.json { render :show, status: :created, location: @review }
       else
         format.html { redirect_to root_path }
+        format.js { head :none }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end

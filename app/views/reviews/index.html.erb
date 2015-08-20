@@ -1,6 +1,6 @@
 <h1>Reviews</h1>
 
-<%= form_for(@review) do |f| %>
+<%= form_for @review, remote: true do |f| %>
   <div class="field">
     <%= f.label :reviewer_name %><br>
     <%= f.text_field :reviewer_name %>

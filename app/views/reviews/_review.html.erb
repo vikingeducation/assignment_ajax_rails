@@ -1,8 +1,8 @@
-<tr>
+<tr id="<%= review.id %>">
   <td><%= review.reviewer_name %></td>
   <td><%= review.title %></td>
   <td><%= review.review_text %></td>
   <td><%= review.review_date %></td>
   <td><%= review.movie_id %></td>
-  <td><%= link_to "Delete this review", review_path(review.id), method: :delete %></td>
+  <td><%= link_to "Delete this review", review_path(review.id), method: :delete, remote: true %></td>
 </tr>
