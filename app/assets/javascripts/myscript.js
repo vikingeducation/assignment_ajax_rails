@@ -2,7 +2,16 @@ var JS = JS || {};
 
 JS.MovieModule = (function(){
 
-  function getMovies(){
+  var $table;
+
+  function init(){
+    $table = $('.movie-table');
+    console.log($table);
+    _createMovieListener();
+    getMovies($table);
+  }
+
+  function getMovies(table){
 
     $.ajax({
 
@@ -13,7 +22,7 @@ JS.MovieModule = (function(){
       dataType: "json",
 
       success: function(json){
-        buildMoviesList(json);
+        buildMoviesList(json, table);
       },
 
       error: function(){
@@ -25,17 +34,47 @@ JS.MovieModule = (function(){
 
   }
 
-  function buildMoviesList(movies){
-    console.log(movies);
-    var $table = $('.movie-table');
+  function buildMoviesList(movies, table){
 
     for(var i = 0; i < movies.length; i++ ){
-      $table.append('<tr><td>'+movies[i].name+'</td><td>'+movies[i].release_date + '</td></tr>');
+      table.append('<tr><td>'+movies[i].name+'</td><td>'+movies[i].release_date + '</td></tr>');
     }
   }
 
+  function _createMovieListener(){
+    $('.submit-movie').click(function(e){
+      e.preventDefault();
+      createMovie();
+
+    });
+  }
+
+  function createMovie(){
+
+    $.ajax({
+
+              url: 'movies.json',
+
+              type: "POST",
+
+              dataType: 'json',
+
+              success: addMovie,
+
+              error: function(){
+                alert("errrrorr");
+              }
+
+    });
+  }
+
+  function addMovie( movieObj ){
+    $(" table tr:nth-child(2)").insertAfter('<tr>'+movieObj.name +'</tr><tr>' +movieObj.release_date +'</tr>');
+  }
+
   return{
-    getMovies: getMovies
+    getMovies: getMovies,
+    init: init
   };
 
 
@@ -83,6 +122,6 @@ JS.ReviewModule = (function(){
   }
 
   return{
-    getReviews: getReviews
+    getReviews: getReviews, 
   };
 })();

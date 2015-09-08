@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
 
       if @movie.save
         format.html { redirect_to @movie }
-        format.json { return @movie }
+        format.json { render :json => @movie }
       else
         format.html { render :new }
         format.json { render :new }

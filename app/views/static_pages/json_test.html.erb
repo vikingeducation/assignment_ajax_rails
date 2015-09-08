@@ -1,9 +1,11 @@
 <h1>Movies JSON</h1>
 
-<%= form_for @movie do |f|%>
-  <%= f.text_field :name %>
-  <%= f.submit %>
-<% end %>
+<form>
+  First name:<br>
+  <input type="text" name="firstname" value="Mickey">
+  <br>
+  <input class="submit-movie" type="submit" value="Submit">
+</form>
 
 <table class="movie-table">
   <tr>
