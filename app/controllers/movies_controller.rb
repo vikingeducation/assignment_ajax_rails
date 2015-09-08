@@ -3,6 +3,22 @@ class MoviesController < ApplicationController
   end
 
   def create
+    @movie = Movie.new(whitelist_movie_params)
+    @movie.release_date = DateTime.now
+
+    respond_to do |format|
+
+      if @movie.save
+        format.html { redirect_to @movie }
+        format.json { return @movie }
+      else
+        format.html { render :new }
+        format.json { render :new }
+      end
+
+
+
+    end
   end
 
   def destroy
@@ -19,6 +35,7 @@ class MoviesController < ApplicationController
   end
 
   def index
+    @movie = Movie.new
     @movies = Movie.all
 
     respond_to do |format|
@@ -26,5 +43,10 @@ class MoviesController < ApplicationController
       format.json { render :json => @movies, :status => 201 }
     end
   end
+
+  private
+    def whitelist_movie_params
+      params.require(:movie).permit(:name)
+    end
 
 end

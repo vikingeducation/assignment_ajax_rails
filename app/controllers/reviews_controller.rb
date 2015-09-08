@@ -19,5 +19,11 @@ class ReviewsController < ApplicationController
   end
 
   def index
+    @reviews = Review.all
+
+    respond_to do |format|
+      format.html { render 'static_pages/json_test.html'}
+      format.json { render :json => @reviews, :status => 201 }
+    end
   end
 end
