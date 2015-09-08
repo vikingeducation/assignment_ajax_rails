@@ -1,0 +1,23 @@
+<h1>Reviews</h1>
+
+<%= form_for @review do |f| %>
+  <%= f.collection_select :movie, Movie.all, :id, :name %><br><br>
+  <%= f.text_field :reviewer_name %><br><br>
+  <%= f.text_field :title %><br><br>
+  <%= f.text_area :text %><br><br>
+  <%= f.date_field :date %><br><br>
+  <%= f.submit %>
+<% end %>
+
+<table class="review-table">
+  <tr>
+    <th>Movie</th>
+    <th>Review Title</th>
+    <th>Reviewer</th>
+    <th>Review Body</th>
+    <th>Review Date</th>
+  </tr>
+
+  <%= render @reviews %>
+
+</table>

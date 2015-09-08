@@ -7,6 +7,14 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    review = Review.find(params[:id])
+    if review && review.destroy
+      flash[:success] = "successfully deleted"
+      redirect_to reviews_path
+    else
+      flash[:error] = "failed to delete"
+      redirect_to reviews_path
+    end
   end
 
   def edit
@@ -19,10 +27,11 @@ class ReviewsController < ApplicationController
   end
 
   def index
+    @review = Review.new
     @reviews = Review.all
 
     respond_to do |format|
-      format.html { render 'static_pages/json_test.html'}
+      format.html { render :index }
       format.json { render :json => @reviews, :status => 201 }
     end
   end
