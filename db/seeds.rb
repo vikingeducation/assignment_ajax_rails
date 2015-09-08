@@ -23,6 +23,7 @@ def generate_review
   review.title = Faker::Book.title
   review.text = Faker::Lorem.sentence
   review.movie_id = Movie.ids.sample
+  review.save
 end
 
 MULTIPLIER.times do
