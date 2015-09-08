@@ -22,17 +22,16 @@ class MoviesController < ApplicationController
       if @movie.save
         flash[:success] = "Movie was successfully created"
         format.html { redirect_to @movie }
-        format.json { redirect_to @movie }
-        # format.js # This renders create.js.erb
+        # format.json { render :show, status: :created}
+        format.js # This renders create.js.erb
       else
         flash[:error] = @movie.errors.full_messages
         format.html { render :new }
-        format.json { render :new }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
         # format.js { head :none }
       end
     end
   end
-
 
   def show
     @movie = Movie.find(params[:id])
