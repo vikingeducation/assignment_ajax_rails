@@ -1,2 +1,5 @@
-$(".review-table tr:first").after("<%= j(render partial: 'review', locals: {review: @review}) %>");
-$("#new_review input").val("");
+var $newReview = $("<%= j(render partial: 'review', locals: {review: @review}) %>");
+$newReview.hide(0);
+$(".review-table tr:first").after($newReview);
+$newReview.slideDown(1000);
+$(".review-input").val("");

@@ -10,7 +10,7 @@ srand(12345)
 
 20.times do |movie_name|
   random_time = DateTime.now - rand(1000) - 10
-  new_movie = Movie.create(name: "Movie # #{movie_name}", release_date: random_time)
+  new_movie = Movie.create(name: "Movie # #{movie_name + 1}", release_date: random_time)
   rand(5).times do |reviewer|
     Review.create(movie: new_movie,
                   reviewer_name: "Reviewer #{reviewer}",

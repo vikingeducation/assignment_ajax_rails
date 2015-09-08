@@ -20,12 +20,17 @@ class ReviewsController < ApplicationController
 
   def destroy
     review = Review.find(params[:id])
-    if review && review.destroy
-      flash[:success] = "successfully deleted"
-      redirect_to reviews_path
-    else
-      flash[:error] = "failed to delete"
-      redirect_to reviews_path
+
+    respond_to do |format|
+      if review && review.destroy
+        flash[:success] = "successfully deleted"
+        format.html { redirect_to reviews_path }
+        format.js {}
+      else
+        flash[:error] = "failed to delete"
+        format.html { redirect_to reviews_path }
+        format.js { render :delete }
+      end
     end
   end
 
