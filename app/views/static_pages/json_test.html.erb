@@ -1,11 +1,9 @@
 <h1>Movies JSON</h1>
 
-<form>
-  First name:<br>
-  <input type="text" name="firstname" value="Mickey">
-  <br>
-  <input class="submit-movie" type="submit" value="Submit">
-</form>
+<%= form_for @movie do |f| %>
+  <%= f.text_field :name  %>
+  <%= f.submit class: "submit-movie" %>
+<% end %>
 
 <table class="movie-table">
   <tr>
@@ -28,7 +26,7 @@
 
 <script>
   $(document).ready(function(){
-    JS.MovieModule.getMovies();
+    JS.MovieModule.init();
     // JS.ReviewModule.getReviews();
   });
 </script>

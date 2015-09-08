@@ -5,6 +5,7 @@ JS.MovieModule = (function(){
   var $table;
 
   function init(){
+    console.log("Hello");
     $table = $('.movie-table');
     console.log($table);
     _createMovieListener();
@@ -22,7 +23,7 @@ JS.MovieModule = (function(){
       dataType: "json",
 
       success: function(json){
-        buildMoviesList(json, table);
+        buildMoviesList(json);
       },
 
       error: function(){
@@ -34,34 +35,31 @@ JS.MovieModule = (function(){
 
   }
 
-  function buildMoviesList(movies, table){
+  function buildMoviesList(movies){
 
     for(var i = 0; i < movies.length; i++ ){
-      table.append('<tr><td>'+movies[i].name+'</td><td>'+movies[i].release_date + '</td></tr>');
+      $table.append('<tr><td>'+movies[i].name+'</td><td>'+movies[i].release_date + '</td></tr>');
     }
   }
 
   function _createMovieListener(){
     $('.submit-movie').click(function(e){
       e.preventDefault();
-      createMovie();
-
+      createMovie($('#movie_name').val());
     });
   }
 
-  function createMovie(){
+  function createMovie(movieName){
+    console.log(movieName);
 
     $.ajax({
-
               url: 'movies.json',
-
               type: "POST",
-
+              data: { movie: { name: movieName }},
               dataType: 'json',
-
               success: addMovie,
-
-              error: function(){
+              error: function(xhr){
+                console.log(xhr);
                 alert("errrrorr");
               }
 
@@ -69,12 +67,13 @@ JS.MovieModule = (function(){
   }
 
   function addMovie( movieObj ){
-    $(" table tr:nth-child(2)").insertAfter('<tr>'+movieObj.name +'</tr><tr>' +movieObj.release_date +'</tr>');
+    console.log($(".movie-table tr:first"))
+    $(".movie-table tr:first").after('<tr><td>'+ movieObj.name +'</td><td>' + movieObj.release_date +'</td></tr>');
   }
 
   return{
+    init: init,
     getMovies: getMovies,
-    init: init
   };
 
 
@@ -122,6 +121,6 @@ JS.ReviewModule = (function(){
   }
 
   return{
-    getReviews: getReviews, 
+    getReviews: getReviews,
   };
 })();

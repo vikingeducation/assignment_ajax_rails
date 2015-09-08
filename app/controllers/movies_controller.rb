@@ -36,7 +36,7 @@ class MoviesController < ApplicationController
 
   def index
     @movie = Movie.new
-    @movies = Movie.all
+    @movies = Movie.order(release_date: :desc)
 
     respond_to do |format|
       format.html { render 'static_pages/json_test.html'}
