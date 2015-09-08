@@ -5,12 +5,17 @@ $(document).ready(function(){
     dataType: "json",
     contentType: "application/json",
     success: function (json) {
-      for (var i = 0; i < json.length; i++) {
-        json[i].name
-        json[i].release_date
-      };
-      $("#movies").append("<tr><td>...</td></tr>")
-
+      insertMovieIntoTable(json);
     }
-  })
-})
+  });
+});
+
+var insertMovieIntoTable = function (json){
+  for (var i = 0; i < json.length; i++) {
+    // console.log(json[i]);
+    var name = json[i].name;
+    var date = json[i]['release_date'];
+    var $movie = $("<tr id='" + json[i].id + "'>").appendTo('#movies');
+    $movie.append('<td>'+name+'</td><td>'+date+'</td>');
+  }
+};
