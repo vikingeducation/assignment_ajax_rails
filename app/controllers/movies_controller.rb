@@ -1,5 +1,7 @@
 class MoviesController < ApplicationController
 
+  respond_to :html, :js, :json, only: [:new]
+
   def index
     @movies = Movie.all
     @movie = Movie.new
@@ -20,19 +22,24 @@ class MoviesController < ApplicationController
       if @movie.save
         flash[:success] = "Movie was successfully created"
         format.html { redirect_to @movie }
-        # format.json {render :json => @movie}
-        format.js # This renders create.js.erb
+        format.json { redirect_to @movie }
+        # format.js # This renders create.js.erb
       else
         flash[:error] = @movie.errors.full_messages
         format.html { render :new }
-        format.js { head :none }
+        format.json { render :new }
+        # format.js { head :none }
       end
     end
   end
 
 
   def show
-
+    @movie = Movie.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json {render :json => @movie}
+    end
   end
 
   private
