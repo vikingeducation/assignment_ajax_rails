@@ -1,0 +1,2 @@
+$(".review-table tr:first").after("<%= j(render partial: 'review', locals: {review: @review}) %>");
+$("#new_review input").val("");

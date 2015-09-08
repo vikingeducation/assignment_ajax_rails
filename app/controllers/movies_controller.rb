@@ -15,9 +15,6 @@ class MoviesController < ApplicationController
         format.html { render :new }
         format.json { render :new }
       end
-
-
-
     end
   end
 

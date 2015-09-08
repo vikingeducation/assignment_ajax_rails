@@ -4,6 +4,18 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    @review = Review.new(whitelist_review_params)
+    @review.date = DateTime.now
+
+    respond_to do |format|
+      if @review.save
+        format.html { redirect_to reviews_path }
+        format.js   { render :index }
+      else
+        format.html { render :index }
+        format.js   { render :index }
+      end
+    end
   end
 
   def destroy
@@ -28,11 +40,17 @@ class ReviewsController < ApplicationController
 
   def index
     @review = Review.new
-    @reviews = Review.all
+    @reviews = Review.order(date: :desc)
 
     respond_to do |format|
       format.html { render :index }
       format.json { render :json => @reviews, :status => 201 }
     end
   end
+
+  private
+
+    def whitelist_review_params
+      params.require(:review).permit(:reviewer_name, :title, :text, :movie_id)
+    end
 end
