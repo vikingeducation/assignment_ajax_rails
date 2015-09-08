@@ -31,6 +31,10 @@ class MoviesController < ApplicationController
   end
 
 
+  def show
+
+  end
+
   private
 
     def movie_params

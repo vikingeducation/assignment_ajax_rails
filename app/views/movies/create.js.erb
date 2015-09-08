@@ -1,0 +1,13 @@
+// Flash message
+// Refresh movie table
+
+// $('#movie-form').slideUp(700);
+// Enable button & show success message
+$('#movie-flash').html("<div class='alert alert-success'>");
+$('#movie-flash > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("</button>");
+$('#movie-flash > .alert-success')
+.append("<strong>Your movie was created! </strong>");
+$('#movie-flash > .alert-success')
+.append('</div>');
+
+SP.populateMovies.run();
