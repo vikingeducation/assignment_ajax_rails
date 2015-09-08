@@ -21,7 +21,7 @@ SP.populateReviews = (function(){
       var title = json[i].title;
       var text = json[i].text;
       var movie_id = json[i].movie_id;
-      var $review = $("<tr id='" + json[i].id + "'>").appendTo('#reviews-table');
+      var $review = $("<tr id='" + json[i].id + "'>").prependTo('#reviews-table');
       $review.append('<td>'+name+'</td>');
       $review.append('<td>'+title+'</td>');
       $review.append('<td>'+movie_id+'</td>');
@@ -35,11 +35,11 @@ SP.populateReviews = (function(){
 
 })();
 
-$(document).ready(function(){
-  if ($("#reviews-table").length) {
-    SP.populateReviews.run();
-  };
-});
+// $(document).ready(function(){
+//   if ($("#reviews-table").length) {
+//     SP.populateReviews.run();
+//   };
+// });
 
 // create reviews module
 // add page specific JS

@@ -5,14 +5,20 @@
       <%= review_fields.label :reviewer_name %>
       <%= review_fields.text_field :reviewer_name, class: "form-control" %>
 
+      <br>
+
       <%= review_fields.label :title %>
       <%= review_fields.text_field :title, class: "form-control" %>
+
+      <br>
 
       <%= review_fields.label :text %>
       <%= review_fields.text_area :text, class: "form-control" %>
 
-      <%= review_fields.label :movie %>
-      <%= review_fields.collection_select :movie_id, Movie.all, :id, :name, class: "form-control" %>
+      <br>
+
+      <%= review_fields.label :movie_id %>
+      <%= review_fields.collection_select :movie_id, Movie.all, :id, :name, {}, class: "form-control" %>
 
       <br><br>
 
