@@ -1,8 +1,6 @@
-$(document).ready(function(){
-  populateReviews.run();
-});
+var SP = SP || {}
 
-var populateReviews = (function(){
+SP.populateReviews = (function(){
 
   var useJSONObjectToPopulateTable = function(){
     $.ajax({
@@ -37,7 +35,11 @@ var populateReviews = (function(){
 
 })();
 
-
+$(document).ready(function(){
+  if ($("#reviews-table").length) {
+    SP.populateReviews.run();
+  };
+});
 
 // create reviews module
 // add page specific JS
