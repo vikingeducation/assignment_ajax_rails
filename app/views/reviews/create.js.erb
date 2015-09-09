@@ -4,11 +4,12 @@ $('#review-flash > .alert-success')
 .append("<strong>Your review was created! </strong>");
 $('#review-flash > .alert-success')
 .append('</div>');
+// use flash partial for building it
 
 
-var $element =  $("<%= escape_javascript(render :partial => 'review', :locals => { :review => @review } ) %>").prependTo('#reviews-table').hide();
+var $element =  $("<%= escape_javascript(render :partial => 'review', :locals => { :review => @review } ) %>");
 
-$element.fadeIn(1000);
+$element.prependTo('#reviews-table').hide().fadeIn(1000);
 
 console.log($('#review-form'));
 $('#new_review').trigger('reset');

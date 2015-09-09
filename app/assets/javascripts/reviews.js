@@ -34,6 +34,8 @@ SP.populateReviews = (function(){
   var infiniteScroll = function(){
     $(window).scroll(function(){
         // if you're at the bottom of the page
+        // console.log("document height" + $(document).height())
+        // console.log("window height" + $(window).height())
         if  ($(window).scrollTop() == $(document).height() - $(window).height()){
           page_count++;
           $.ajax({
