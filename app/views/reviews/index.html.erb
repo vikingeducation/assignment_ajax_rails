@@ -3,16 +3,16 @@
 <%= form_for @review, remote: true do |f| %>
   <%= f.label :movie %>
   <%= f.collection_select :movie_id, Movie.all, :id, :name, class:"review-input" %><br><br>
-  
+
   <%= f.label :name %>
   <%= f.text_field :reviewer_name, class:"review-input" %><br><br>
-  
+
   <%= f.label :title %>
   <%= f.text_field :title, class:"review-input" %><br><br>
-  
+
   <%= f.label :text %>
   <%= f.text_area :text, class:"review-input" %><br><br>
-  
+
   <%= f.submit %>
 <% end %>
 
