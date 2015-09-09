@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @review, remote: true do |review_fields| %>
+
+      <%= review_fields.label :reviewer_name %>
+      <%= review_fields.text_field :reviewer_name, class: "form-control" %>
+
+      <br>
+
+      <%= review_fields.label :title %>
+      <%= review_fields.text_field :title, class: "form-control" %>
+
+      <br>
+
+      <%= review_fields.label :text %>
+      <%= review_fields.text_area :text, class: "form-control" %>
+
+      <br>
+
+      <%= review_fields.label :movie_id %>
+      <%= review_fields.collection_select :movie_id, Movie.all, :id, :name, {}, class: "form-control" %>
+
+      <br><br>
+
+      <%= review_fields.submit "Submit new review", id: "submit-review", class: "btn btn-primary" %>
+
+    <% end %>
+  </div>
+</div>

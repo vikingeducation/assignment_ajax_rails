@@ -1,0 +1,15 @@
+$('#review-flash').html("<div class='alert alert-success'>");
+$('#review-flash > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("</button>");
+$('#review-flash > .alert-success')
+.append("<strong>Your review was created! </strong>");
+$('#review-flash > .alert-success')
+.append('</div>');
+// use flash partial for building it
+
+
+var $element =  $("<%= escape_javascript(render :partial => 'review', :locals => { :review => @review } ) %>");
+
+$element.prependTo('#reviews-table').hide().fadeIn(1000);
+
+console.log($('#review-form'));
+$('#new_review').trigger('reset');

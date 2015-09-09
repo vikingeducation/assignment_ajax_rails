@@ -1,0 +1,7 @@
+<tr>
+  <td><%= review.reviewer_name %></td>
+  <td><%= review.title %></td>
+  <td><%= review.text %></td>
+  <td><%= review.movie.name %></td>
+  <td><%= link_to "Delete", review_path(review), remote: true, method: :delete, class: "text-danger", data: { confirm: 'Are you sure you want to delete this entry?' } %></td>
+</tr>
