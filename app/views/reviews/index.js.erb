@@ -1,0 +1,4 @@
+console.log("We are executing the script")
+<% @reviews.each do |review| %>
+  $("<%= escape_javascript(render :partial => 'review', :locals => { :review => review } ) %>").appendTo("#reviews-table")
+<% end %>
