@@ -1,0 +1,23 @@
+
+<tr>
+  <td>
+    <%= review.movie_id %>
+  </td>
+  <td>
+    <%= review.reviewer_name %>
+  </td>
+  <td>
+    <%= review.title %>
+  </td>
+  <td>
+    <%= review.text %>
+  </td>
+  <td>
+    <%= review.date %>
+  </td>
+  <td>
+    <%= link_to "Delete", review_path(review), method: :delete,
+                                              :remote => true,
+                                              class: "delete_review"  %>
+  </td>
+</tr>

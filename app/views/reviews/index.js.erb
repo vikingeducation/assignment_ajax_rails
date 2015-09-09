@@ -1,0 +1,5 @@
+var $newReview = $("<%= j(render partial: 'review', locals: {review: @review}) %>");
+$newReview.addClass("hidden-list");
+($newReview.insertAfter($(".review-table tr:first"))).fadeIn(3000)
+// $newReview.slideDown(1000);
+$(".review-input").val("");

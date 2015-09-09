@@ -1,0 +1,32 @@
+<h1>Movies JSON</h1>
+
+<%= form_for @movie do |f| %>
+  <%= f.text_field :name  %>
+  <%= f.submit class: "submit-movie" %>
+<% end %>
+
+<table class="movie-table">
+  <tr>
+    <th>Name</th>
+    <th>Release Date</th>
+  </tr>
+
+</table>
+
+<!-- <table class="review-table">
+  <tr>
+    <th>Movie</th>
+    <th>Review Title</th>
+    <th>Reviewer</th>
+    <th>Review Body</th>
+    <th>Review Date</th>
+  </tr>
+
+</table> -->
+
+<script>
+  $(document).ready(function(){
+    JS.MovieModule.init();
+    // JS.ReviewModule.getReviews();
+  });
+</script>
