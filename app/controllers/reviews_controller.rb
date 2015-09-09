@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
 
   def index
-    @reviews = Review.all.order(created_at: :desc)
+    @reviews = Review.all.order(created_at: :desc).paginate(:page => params[:page], :per_page => 10)
     @review = Review.new
     respond_to do |format|
       format.html {}

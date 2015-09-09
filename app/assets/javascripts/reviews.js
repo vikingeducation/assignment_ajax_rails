@@ -1,6 +1,8 @@
-var SP = SP || {}
+var SP = SP || {};
 
 SP.populateReviews = (function(){
+
+  var page_count = 1;
 
   var useJSONObjectToPopulateTable = function(){
     $.ajax({
@@ -29,17 +31,40 @@ SP.populateReviews = (function(){
     }
   };
 
+
+  var infiniteScroll = function(){
+    $(window).scroll(function(){
+      console.log($(window).scrollTop());
+        // if you're at the bottom of the page
+        if  ($(window).scrollTop() == $(document).height() - $(window).height()){
+          page_count++;
+          $.ajax({
+            method: 'GET',
+            url: 'reviews?page='+page_count,
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function(json){
+              insertReviewIntoTable(json);
+            }
+          });
+        }
+    });
+  };
+
+
   return {
-    run: useJSONObjectToPopulateTable
+    run: useJSONObjectToPopulateTable,
+    infiniteScroll: infiniteScroll
   };
 
 })();
 
-// $(document).ready(function(){
-//   if ($("#reviews-table").length) {
-//     SP.populateReviews.run();
-//   };
-// });
+$(document).ready(function(){
+  if ($("#reviews-table").length) {
+    SP.populateReviews.infiniteScroll();
+    // SP.populateReviews.run();
+  }
+});
 
 // create reviews module
 // add page specific JS
