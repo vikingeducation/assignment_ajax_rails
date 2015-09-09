@@ -1,10 +1,7 @@
 $('#review-flash').html("<div class='alert alert-success'>");
 $('#review-flash > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("</button>");
-$('#review-flash > .alert-success')
-.append("<strong>Your review was created! </strong>");
-$('#review-flash > .alert-success')
-.append('</div>');
-
+$('#review-flash > .alert-success').append("<strong>Your review was created! </strong>");
+$('#review-flash > .alert-success').append('</div>');
 
 var $element =  $("<%= escape_javascript(render :partial => 'review', :locals => { :review => @review } ) %>").prependTo('#reviews-table').hide();
 
