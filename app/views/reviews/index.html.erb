@@ -1,0 +1,24 @@
+<h1>Smelly Potatoes Reviews</h1>
+
+<%= render :partial => 'new',
+           :locals => { :movies => @movies,
+                        :new_review => @new_review } %>
+
+<table data-content='reviews'>
+
+  <thead>
+    <tr>
+      <th>Movie Reviewed</th>
+      <th>Reviewer</th>
+      <th>Title</th>
+      <th>Review Text</th>
+      <th>Review Date</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @reviews %>
+  </tbody>
+
+</table>

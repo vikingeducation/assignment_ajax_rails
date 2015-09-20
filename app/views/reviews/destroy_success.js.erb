@@ -1,0 +1,4 @@
+var $row = $("<%= tr[data-id='#{review.id}']%>");
+$row.remove();
+
+$('#flash-messages').html("<%= j(render partial: 'shared/flash') %>").slideDown();
