@@ -1,0 +1,11 @@
+<div class='new-movie'>
+  <h3>Create a movie</h3>
+
+  <%= form_tag('/movies/new', data: { ajaxremote: true }) %>
+
+  <%= label_tag('title') %>
+  <%= text_field_tag('title') %>
+
+  <br>
+  <%= submit_tag('Create Movie') %>
+</div>
