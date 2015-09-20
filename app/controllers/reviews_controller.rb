@@ -17,7 +17,19 @@ class ReviewsController < ApplicationController
       flash.now[:error] = 'Save failed!'
       render :index
     end
+  end
 
+
+  def destroy
+    @review = Review.find(params[:id])
+
+    if @review.destroy!
+      flash[:success] = 'Review deleted!'
+      redirect_to reviews_path
+    else
+      flash.now[:error] = 'Delete failed!'
+      render :index
+    end
   end
 
 
