@@ -3,8 +3,8 @@
 
   <%= form_tag('/movies', data: { ajaxremote: true }) %>
 
-  <%= label_tag('title') %>
-  <%= text_field_tag('title') %>
+  <%= label_tag('movie[title]', 'Title') %>
+  <%= text_field_tag('movie[title]') %>
 
   <br>
   <%= submit_tag('Create Movie') %>
