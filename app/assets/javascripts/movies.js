@@ -6,12 +6,12 @@ SMELLYPOTATOES.MoviesModule = (function(){
   var _index;
 
 
-  function addListeners() {
+  function _addListeners() {
     _ajaxFormListener();
   };
 
 
-  function getIndex() {
+  function _getIndex() {
     _index = $.ajax( {
       url: 'http://localhost:3000/movies.json',
       method: 'GET',
@@ -65,9 +65,14 @@ SMELLYPOTATOES.MoviesModule = (function(){
   };
 
 
+  function movieScripts() {
+    _addListeners();
+    _getIndex();
+  };
+
+
   return {
-    addListeners: addListeners,
-    getIndex: getIndex
+    movieScripts: movieScripts
   };
 
 })();
@@ -76,6 +81,7 @@ SMELLYPOTATOES.MoviesModule = (function(){
 
 
 $(document).ready(function() {
-  SMELLYPOTATOES.MoviesModule.addListeners();
-  SMELLYPOTATOES.MoviesModule.getIndex();
+  if( $('body').data('controller') == 'movies') {
+    SMELLYPOTATOES.MoviesModule.movieScripts();
+  };
 });
