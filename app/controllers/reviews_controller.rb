@@ -12,10 +12,16 @@ class ReviewsController < ApplicationController
 
     if @review.save
       flash[:success] = 'Review saved successfully!'
-      redirect_to reviews_path
+      respond_to do |format|
+        format.html { redirect_to reviews_path }
+        format.js { render :create_success }
+      end
     else
       flash.now[:error] = 'Save failed!'
-      render :index
+      respond_to do |format|
+        format.html { render :index }
+        format.js { render :nothing => true, :status => 400 }
+      end
     end
   end
 
@@ -25,10 +31,16 @@ class ReviewsController < ApplicationController
 
     if @review.destroy!
       flash[:success] = 'Review deleted!'
-      redirect_to reviews_path
+      respond_to do |format|
+        format.html { redirect_to reviews_path }
+        format.js { render :destroy_success }
+      end
     else
       flash.now[:error] = 'Delete failed!'
-      render :index
+      respond_to do |format|
+        format.html { render :index }
+        format.js { render :nothing => true, :status => 400 }
+      end
     end
   end
 

@@ -1,0 +1,13 @@
+var row = "<%= j( render :partial => 'review',
+                         :locals => { :review => @review } ) %>";
+var $row = $(row);
+
+var $reviewTable = $("table[data-content='reviews']");
+
+
+$reviewTable.prepend( $row )
+
+$('#flash-messages').html("<%= j(render partial: 'shared/flash') %>").slideDown();
+
+// Clear all
+$("form [name*='review']").val('')
