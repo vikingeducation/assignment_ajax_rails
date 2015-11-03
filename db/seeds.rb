@@ -17,7 +17,7 @@ end
 
 # And let's create some reviews for those movies
 Review.delete_all
-15.times do |r|
+5.times do |r|
 	movie_ids = Movie.all.pluck(:id)
 	review = Review.new
 	review.reviewer_name = Faker::Name.name

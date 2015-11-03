@@ -45,5 +45,6 @@ group :development do
   gem 'spring'
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
   gem 'faker', :git => "https://github.com/stympy/faker", :ref => "42f5cb8"
+  gem "better_errors"
 end
 
