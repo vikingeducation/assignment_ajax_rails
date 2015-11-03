@@ -15,7 +15,7 @@ var MoviesModule = (function(){
 			for(var i=0;i<obj.content.length;i++){
 				buffer += '<tr>';
 				buffer += '<td>'+ obj.content[i].title+'</td>';
-				buffer += '<td>'+ $.format.date(obj.content[i].release_date, "dd/MM/yyyy")+'</td>';
+				buffer += '<td>'+ $.format.date(obj.content[i].release_date, "MM/dd/yyyy")+'</td>';
 				buffer += '</tr>';
 			}
 			var table = getMoviesTable();
