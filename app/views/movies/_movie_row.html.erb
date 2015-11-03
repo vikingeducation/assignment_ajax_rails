@@ -1,0 +1,8 @@
+<tr>
+	<td><%= movie.title %></td>
+	<!-- QUESTION: Interesting, I used two different ways to render the 
+					date as a string. One using the jQuery plugin in movies.js and 
+					the other using rails' strftime method. Is there a better way 
+					to merge these two methods? -->
+	<td><%= movie.release_date.strftime("%m/%d/%Y") %></td>
+</tr>

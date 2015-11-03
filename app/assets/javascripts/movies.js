@@ -2,9 +2,11 @@
 //  to the MoviesModule.
 var MoviesModule = (function(){
 
-	// Get the movies table
+	// Get the movies table. Make it so the rest of the 
+	//  code will only run on the table with the data-content
+	//  attribute all-movies
 	var getMoviesTable = function(){
-		return $("[data-content='movies']");
+		return $("[data-content='all-movies']");
 	}
 
 	// Gets passed {type: __, content: __ }
