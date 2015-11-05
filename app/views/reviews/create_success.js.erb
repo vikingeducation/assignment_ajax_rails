@@ -1,0 +1,8 @@
+// Build the new row
+var reviewRow = "<%= j( render partial: "review_row", locals: { review: @review } ) %>"
+var $reviewRow = $( reviewRow );
+
+// Add it to the top of our table body
+var $table = ReviewsModule.getReviewsTable();
+$tableBody = $table.children('tbody');
+$table.prepend( $reviewRow );

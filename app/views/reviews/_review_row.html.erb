@@ -1,0 +1,8 @@
+<tr data-review-id="<%= review.id %>">
+	<td><%= Movie.find(review.movie_id).title %></td>
+	<td><%= review.reviewer_name %></td>
+	<td><%= review.title %></td>
+	<td><%= review.review_text %></td>
+	<td><%= review.review_date.strftime("%m/%d/%Y") %></td>
+	<td><%= link_to "Delete", review_path(review), method: "delete", data: { confirm: "Are You Sure?" }, remote: true %></td>
+</tr>

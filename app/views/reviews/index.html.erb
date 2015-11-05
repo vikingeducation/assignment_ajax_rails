@@ -1,0 +1,63 @@
+<div class="col-sm-10 col-sm-offset-1">
+
+	<section class="col-sm-12">
+
+		<h2>Smelly Potatoes:</h2>
+		
+		<h3>Create a Review:</h3>
+		
+		<%= form_for Review.new, :html => {:id => "#{controller_name}_#{action_name}"}, :method=> "POST", :remote => true do |f| %>
+			
+			<div class="form-group col-sm-4">
+				<%= f.label :reviewer_name %>
+				<%= f.text_field :reviewer_name, placeholder: "Enter Your Name", class: "form-control" %>
+			</div>
+
+			<div class="form-group col-sm-4">
+				<%= f.label :title %>
+				<%= f.text_field :title, placeholder: "Enter Review Title", class: "form-control" %>
+			</div>
+
+			<div class="form-group col-sm-4">
+				<%= f.label :review_text %>
+				<%= f.text_area :review_text, placeholder: "Enter Review Text", class: "form-control" %>
+			</div>
+
+			<div class="form-group col-sm-4">
+				<%= f.label :movie_id %>
+				<%= collection_select(:review, :movie_id, Movie.all, :id, :title, {prompt: true}, {class: "form-control"}) %>
+			</div>
+			
+			<div class="form-group col-sm-4">
+				<%= f.submit class: "form-control btn btn-primary" %>		
+			</div>
+		<% end %>
+
+	</section>
+	<!-- END Section -->
+
+	<section class="col-sm-12">
+		<h2>All Reviews:</h2>
+		<!-- Table goes here -->
+		<div class="col-sm-12">
+			<table class="table table-hover table-bordered" data-content="all-reviews">
+				<thead>
+					<tr>
+						<th>Movie Reviewed</th>
+						<th>Reviewer</th>
+						<th>Title</th>
+						<th>Review Text</th>
+						<th>Review Date</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @reviews.each do |review| %>
+						<%= render partial: "review_row", locals: {review: review} %>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</section>
+</div>

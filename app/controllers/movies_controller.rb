@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
 
 		respond_to do |format|
 			format.html
-			format.json {render :json => @movies, :status => 200}
+			format.json {render :json => @movies}
     end	
 	end
 
@@ -31,8 +31,8 @@ class MoviesController < ApplicationController
 	end
 
 private
-  def movie_params
-    params.require( :movie ).permit( :title )
-  end
+	def movie_params
+		params.require( :movie ).permit( :title )
+	end
 
 end
