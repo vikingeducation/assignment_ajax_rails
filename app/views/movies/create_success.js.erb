@@ -1,0 +1,13 @@
+// Use the _post.html.erb Post partial to 
+//   generate the new row
+// Recall that `j` is a shortcut for `escape_javascript`
+// Also note that we need the explicit path to
+//   the partial.
+var movieRow = "<%= j( render partial: "movie_row", locals: { movie: @movie } ) %>"
+var $movieRow = $( movieRow );
+
+// Identify our Post tables using the function
+//   provided by our PostModule and prepend them
+//   with our post partial (a row)
+var $tables = MoviesModule.getMoviesTable();
+$tables.append( $movieRow );
