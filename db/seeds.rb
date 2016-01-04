@@ -9,6 +9,7 @@
 
 # Destroy old records
 if Rails.env == 'development'
+  puts 'Destroying old data'
   Rake::Task['db:migrate:reset'].invoke
 end
 
@@ -394,31 +395,31 @@ ADJECTIVES = [
 ]
 
 def random_adjective
-  ADJECTIVES.shuffle.sample
-end
-
-REVIEWS = [
-  "#{random_adjective.capitalize} in the beginning, but #{random_adjective} in the end. It is #{random_adjective} that the directors were able to do such #{random_adjective} work on this #{random_adjective} film.",
-
-  "The writers of this movie did a #{random_adjective} job of telling the #{random_adjective} story of the characters' #{random_adjective} journey. We have come to expect such #{random_adjective} work from these writers and they really show their #{random_adjective} skills in this movie. I give it two #{random_adjective} thumbs up.",
-
-  "The #{random_adjective} actors in this movie were clearly at the pique of their #{random_adjective} careers. It is #{random_adjective} to see them give such #{random_adjective} performances. The director has a #{random_adjective} eye for #{random_adjective} talent. The #{random_adjective} movie would not be the same without these professionals doing their #{random_adjective} jobs."
-]
-
-def random_review
-  REVIEWS.shuffle.sample
+  ADJECTIVES[rand(ADJECTIVES.length)]
 end
 
 def random_critic
-  CRITICS.shuffle.sample
+  CRITICS[rand(CRITICS.length)]
 end
 
-def random_title(movie)
-  [
+def random_review_body
+  review_bodies = [
+    "#{random_adjective.capitalize} in the beginning, but #{random_adjective} in the end. It is #{random_adjective} that the directors were able to do such #{random_adjective} work on this #{random_adjective} film.",
+
+    "The writers of this movie did a #{random_adjective} job of telling the #{random_adjective} story of the characters' #{random_adjective} journey. We have come to expect such #{random_adjective} work from these writers and they really show their #{random_adjective} skills in this movie. I give it two #{random_adjective} thumbs up.",
+
+    "The #{random_adjective} actors in this movie were clearly at the pique of their #{random_adjective} careers. It is #{random_adjective} to see them give such #{random_adjective} performances. The director has a #{random_adjective} eye for #{random_adjective} talent. The #{random_adjective} movie would not be the same without these professionals doing their #{random_adjective} jobs."
+  ]
+  review_bodies[rand(review_bodies.length)]
+end
+
+def random_review_title(movie)
+  review_titles = [
     "#{movie.title} is a #{random_adjective} hit!",
     "The crowd gives a #{random_adjective} ovation for #{movie.title}!",
     "#{movie.title} is #{random_adjective} and #{random_adjective}."
-  ].shuffle.sample
+  ]
+  review_titles[rand(review_titles.length)]
 end
 
 
@@ -433,8 +434,8 @@ reviews = []
 movies.each do |movie|
   5.times do |i|
     reviews << {
-      :title => random_title(movie),
-      :body => random_review,
+      :title => random_review_title(movie),
+      :body => random_review_body,
       :date => movie.date + rand(1..365),
       :reviewer => random_critic,
       :movie_id => movie.id
