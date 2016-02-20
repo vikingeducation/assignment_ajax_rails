@@ -1,0 +1,30 @@
+<h1>Smelly Potatoes Movies</h1>
+
+<p>
+  <h3>Create a Movie</h3>
+  <%= form_for @movie do |f| %>
+  
+    <div>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+
+    <%= f.submit %>
+  
+  <% end %>
+</p>
+
+<p>
+  <h3>All Movies</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Release Date</th>
+      </tr>
+    </thead>
+    <tbody data-model="movie">
+      
+    </tbody>
+  </table>
+</p>

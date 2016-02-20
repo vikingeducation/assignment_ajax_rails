@@ -1,0 +1,54 @@
+<h1>Smelly Potatoes Reviews</h1>
+
+<p>
+  <h3>Create a Review</h3>
+
+  <%= form_for @review, remote: true do |f| %>
+    <div>
+      <%= f.label :reviewer_name, "Reviewer" %>
+      <%= f.text_field :reviewer_name %>
+    </div><br>
+
+    <div>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div><br>
+
+    <div>
+      <%= f.label :review_text, "Review Body" %>
+      <%= f.text_field :review_text %>
+    </div><br>
+
+    <div>
+      <%= f.label :movie_id, "Movie" %>
+      <%= f.collection_select(:movie_id,
+                               Movie.all,
+                               :id,
+                               :title,
+                               prompt: "Select Movie" ) %>
+    </div><br>
+
+    <%= f.submit %>
+  
+  <% end %>
+</p>
+
+<p>
+  <h3>All Reviews</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Movie Reviewed</th>
+        <th>Reviewer</th>
+        <th>Title</th>
+        <th>Review Body</th>
+        <th>Review Date</th>
+        <th>Delete?</th>
+      </tr>
+    </thead>
+    <tbody data-model="review">
+      <%= render @reviews %>
+    </tbody>
+  </table>
+</p>
