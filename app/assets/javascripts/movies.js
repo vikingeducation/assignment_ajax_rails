@@ -60,13 +60,21 @@ MOVIES.Form = (function($){
 
 })($);
 
-if ( $("[data-model='movies']")[0] ){
-  $( document ).ready(function(){
+$( document ).ready(function(){
+  if ( $("[data-model='movie']").length ){
+  
     $('form').on('submit', function(e){
       e.preventDefault();
       MOVIES.Form.submit();
     });
-  });
 
-  $( document ).on('page:change', MOVIES.Index.init());
-}
+  }
+});
+
+$( document ).on('page:change', function(){
+  if ( $("[data-model='movie']").length ){
+
+    MOVIES.Index.init();
+  
+  }
+});
