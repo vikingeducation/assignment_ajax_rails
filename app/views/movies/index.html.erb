@@ -3,7 +3,9 @@
 </header>
 
 <div class="well">
-  <%= form_for(Movie.new) do |f| %>
+  <%= render :partial => 'shared/errors', :locals => { :object => @movie } %>
+
+  <%= form_for(@movie) do |f| %>
     <div class="form-group">
       <%= f.label(:title) %>
       <%= f.text_field(:title, :class => 'form-control') %>
@@ -38,13 +40,5 @@
   <% end %>
 </div>
 
-<table id="movies" class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Release Date</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
+<p id="movies" class="text-danger">No movies</p>
 

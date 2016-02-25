@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AssignmentRailsApi</title>
+    <title>Assignment Rails Api</title>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
@@ -18,14 +18,14 @@
   </head>
   <body id="<%= controller_name + '-' + action_name %>">
 
-    
+    <%= render :partial => 'shared/nav' %>
+    <div id="flash" class="text-center">
+      <%= render :partial => 'shared/flash' %>
+    </div>
+
     <main class="container">
       <div class="row">
         <div class="col-xs-12">
-          
-          <div id="flash">
-            <%= render :partial => 'shared/flash' %>
-          </div>
 
           <%= yield %>
           

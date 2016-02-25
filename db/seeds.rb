@@ -6,14 +6,20 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
+# ----------------------------------------
 # Destroy old records
+# ----------------------------------------
+
 if Rails.env == 'development'
   puts 'Destroying old data'
   Rake::Task['db:migrate:reset'].invoke
 end
 
+
+# ----------------------------------------
 # Helpers
+# ----------------------------------------
+
 MOVIES = [
   {
     :title => "Apollo 13",
@@ -423,12 +429,19 @@ def random_review_title(movie)
 end
 
 
+# ----------------------------------------
 # Create movies
+# ----------------------------------------
+
 puts 'Creating movies'
 Movie.create(MOVIES)
 movies = Movie.all
 
+
+# ----------------------------------------
 # Create reviews
+# ----------------------------------------
+
 puts 'Creating reviews'
 reviews = []
 movies.each do |movie|
@@ -443,6 +456,18 @@ movies.each do |movie|
   end
 end
 Review.create(reviews)
+
+
+
+
+
+
+
+# ----------------------------------------
+# Finished
+# ----------------------------------------
+
+puts 'Done!'
 
 
 
