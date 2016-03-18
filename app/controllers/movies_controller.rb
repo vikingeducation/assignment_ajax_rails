@@ -11,7 +11,8 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie = Movie.new(whitelisted_params)
+    @movie = Movie.new
+    @movie.title = params[:title]
     @movie.release_date = Date.today
 
     respond_to do |format|
