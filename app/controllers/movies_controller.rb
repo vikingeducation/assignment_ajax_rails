@@ -21,7 +21,7 @@ class MoviesController < ApplicationController
         # Redirect to the SHOW action but as a JS request
         # which SHOW will handle *as* a JS request
         format.js { redirect_to @task }
-
+        #should htis be json??
       else
 
         # normal HTML error handling here.
