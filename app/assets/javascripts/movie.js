@@ -12,7 +12,7 @@ Movies = (function(){
       data.forEach( function(elt){
         var $movieTableRow = $('<tr></tr>')
         $movieList.prepend($movieTableRow);
-        console.log(elt);
+        // console.log(elt);
         var $movieTDElt = $('<td>' + elt.title + '</td><td>' + elt.release_date + '</td>');
         $movieTableRow.prepend($movieTDElt);
         //must call add movieToList
@@ -31,17 +31,19 @@ Movies = (function(){
     } );
   };
 
-  var createMovie= function(e) {
-    console.log('create movie im here');
-    e.preventDefault();
-    var data = JSON.stringify({title: title});
+  var createMovie= function( title ) {
+    console.log('create movie im here again');
+
+    // var data = JSON.stringify( {title: title} );
+    var data = {title: title};
 
     $.ajax({
       method: "POST",
       url: "http://localhost:3000/movies.json",
       data: data,
+      dataType: 'json',
       success: function(data){
-        showMovieListMovies();
+        Movies.showMovieList();
       }, 
       error: function(){
         alert('Could not add your movie.');
@@ -49,15 +51,15 @@ Movies = (function(){
     });
   };
 
-  var addMovieToList= function(movie){
-    console.log(movie);
-    var title = movie.title;
-    var release_date = movie.release_date;
+  // var addMovieToList = function(movie){
+  //   console.log(movie);
+  //   var title = movie.title;
+  //   var release_date = movie.release_date;
 
-    var $newMovie = $("<tr><td id='movie-title'>" + title + "</td><td id='release_date'>" + release_date + "</td></tr>");
+  //   var $newMovie = $("<tr><td id='movie-title'>" + title + "</td><td id='release_date'>" + release_date + "</td></tr>");
 
-    $('#movie-list').append($(newMovie));
-  }
+  //   $('#movie-list').append($(newMovie));
+  // };
 
   var showNoMovies = function() {
     var $movieList = $('#movie-list');
@@ -82,10 +84,11 @@ $(document).ready(function(){
    }
 
    $('#movie-form').submit( function(e){
-        var movieTitle = $(this.find("#title").val());
-        console.log(moveTitle);
+        e.preventDefault();
+        var movieTitle = $(this).find("#title").val();
+        // console.log('movie title' + movieTitle);
         Movies.createMovie(movieTitle);
-      });
+    });
  });
  
 

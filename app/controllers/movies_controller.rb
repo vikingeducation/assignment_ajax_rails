@@ -10,18 +10,18 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie = Movie.new
-
+    @movie = Movie.new( title: movie_params[:title] )
+    @movie.release_date = Time.now
     respond_to do |format|
       if @movie.save
 
-        # "standard" response
-        format.html { redirect_to @task }
+        format.html { redirect_to movies_path }
 
         # Redirect to the SHOW action but as a JS request
         # which SHOW will handle *as* a JS request
-        format.js { redirect_to @task }
-
+        format.json {render :json => @movie, :status => 201}
+        puts @movie
+        puts 'im here'
       else
 
         # normal HTML error handling here.
@@ -30,18 +30,14 @@ class MoviesController < ApplicationController
 
         # for JS, this renders an empty template
         # (a.k.a.: you get no JavaScript back)
-        format.js { head :none }
+        format.json { head :none }
       end
     end
   end
 
-  def show
-    @movie = Movie.find(params[id])
-
-    respond_to do |format|
-      format.html {}
-      format.js {}
-    end
+  private
+  def movie_params 
+    params.permit(:title)
   end
 
 end
