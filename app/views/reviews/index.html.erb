@@ -1,0 +1,44 @@
+<div class="container">
+  <br>
+  <div class="row text-center">
+    <h1>Smelly Potatoes Movies</h1>
+  </div>
+
+  <div class="row">
+    <h3>Create a Review</h3>
+
+    <%= form_for @review, id: 'new-review-form', class: 'form-group', remote: true do |f| %>
+      <%= f.label "Reviewer: " %>
+      <%= f.text_field :reviewer_name, class: 'form-control' %>
+      <br>
+      <%= f.label "Title: " %>
+      <%= f.text_field :title, class: 'form-control' %>
+      <br>
+      <%= f.label "Text: " %>
+      <%= f.text_area :review_text, class: 'form-control' %>
+      <br>
+      <%= f.label "Movie: " %>
+      <%= f.collection_select(:movie_id, Movie.all, :id, :title) %>
+      <br>
+      <%= f.submit 'Create Review', class: 'btn-success' %>
+    <% end %>
+    <br>
+  </div>
+
+
+  <table id='review-list' class="table">
+    <thead>
+      <tr>
+        <th>Movie Reviewed</th>
+        <th>Reviewer</th>
+        <th>Title</th>
+        <th>Review Text</th>
+        <th>Review Date</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @reviews %>
+    </tbody>
+  </table>
+</div>

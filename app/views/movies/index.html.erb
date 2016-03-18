@@ -1,0 +1,26 @@
+<div class="container">
+  <br>
+  <div class="row text-center">
+    <h1>Smelly Potatoes Movies</h1>
+  </div>
+
+  <div class="row">
+    <h3>Create a Movie</h3>
+
+    <%= form_tag "/movies", class: 'form-group', method: "post" do |f| %>
+      <%= label_tag "Title: "%>
+      <%= text_field_tag :title, "", class: 'form-control' %><br>
+      <%= submit_tag 'Create Movie', class: 'btn-success' %>
+    <% end %>
+    <br>
+  </div>
+
+
+  <table id='movie-list' class="table">
+    <tr>
+      <th>Movie Title</th>
+      <th>Release Date</th>
+    </tr>
+    
+  </table>
+</div>
