@@ -1,0 +1,8 @@
+
+console.log("Deleting review with JS!!!");
+
+
+var $row = $('#<%= j("review-#{@review.id}") %>');
+
+$row.remove();
+console.log("rendered with AJAX!!!");
