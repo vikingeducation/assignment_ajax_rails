@@ -10,10 +10,17 @@ class ReviewsController < ApplicationController
     @review.review_date = Time.now
 
     if @review.save
-      redirect_to reviews_path
+      respond_to do |format|
+        format.html { redirect_to reviews_path }
+        format.js
+      end
     else
-      redirect_to reviews_path
+      respond_to do |format|
+        format.html { redirect_to reviews_path }
+        format.js { redirect_to reviews_path }
+      end
     end
+
   end
 
   def destroy
