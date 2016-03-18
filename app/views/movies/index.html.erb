@@ -1,14 +1,14 @@
 <h1>Smelly Potatoes Movies</h1>
 
 <h3>Create A Movie</h3>
-<%= form_for @movie, remote: true do |f| %>
+<%= form_for @movie, data: { ajaxremote: true } do |f| %>
   <%= f.label "Movie Title" %>
   <%= f.text_field :title %>
   <%= f.submit %>
 <% end %>
 
 <h3>All Movies</h3>
-<table class="table" id="movie-table">
+<table class="table">
   <tr>
     <th>
       Title
@@ -17,4 +17,7 @@
       Release Date
     </th>
   </tr>
+  <tbody id="movie-table">
+
+  </tbody>
 </table>

@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
 
   def index
-    @movies = Movie.all.order( created_at: :desc )
+    @movies = Movie.all.order( created_at: :asc )
     @movie = Movie.new
 
     respond_to do |format|

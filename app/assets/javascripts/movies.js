@@ -1,6 +1,8 @@
 $( document ).ready( function() {
-  movieModule.getMovieTable();
-  movieModule.registerEventListeners();
+  if ( $("body").data("controller") === 'movies' ) {
+    movieModule.getMovieTable();
+    movieModule.registerEventListeners();
+  }
 });
 
 var movieModule = (function(){
@@ -15,21 +17,22 @@ var movieModule = (function(){
   var _movieFormListener = function(){
 
     $("form[data-ajaxremote='true']").submit( function( event ){
-    
+
       event.preventDefault();
 
       var $el = $( event.target );
-      //var formData = { movie: {title: $el.serializeArray()[2].value}};
-      var formData = {movie: $el.serializeArray()[2].value};
+      // var formData = { movie: {title: $el.serializeArray()[2].value}};
+      var formData = { title: $el.serializeArray()[2].value };
+      console.log(formData);
       $.ajax({
         url: $el.attr("action"),
         type: "POST",
-        data: formData,
+        data: JSON.stringify(formData),
         dataType: "json",
         contentType: "application/json",
         success: function(movie){
-          console.log( "MOVIE: " + movie);
-          _addMovieRowToTable( movie );
+          console.log("SUCCESS");
+          _addMovieRowToTable( movie.title, movie.id, movie.created_at );
         },
 
         error: function(){
@@ -37,11 +40,11 @@ var movieModule = (function(){
         },
 
         complete: function(){
-          console.log( "ERROR");
+          console.log( "COMPLETE");
         }
 
       })
-      
+
     });
   }
 
@@ -84,13 +87,12 @@ var movieModule = (function(){
   };
 
   var _addMovieRowToTable = function(title,id,created_at) {
-   
-      var row = $("<tr data-id='" + id + "'></tr>");
-      var titleCell = $("<td>" + title + "</td>");
-      var dateCell = $("<td>" + created_at + "</td>");
+    var row = $("<tr data-id='" + id + "'></tr>");
+    var titleCell = $("<td>" + title + "</td>");
+    var dateCell = $("<td>" + created_at + "</td>");
 
-      row.append(titleCell).append(dateCell);
-      $table.append(row);
+    row.append(titleCell).append(dateCell);
+    $table.prepend(row);
   };
 
 
