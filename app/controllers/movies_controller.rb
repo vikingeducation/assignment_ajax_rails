@@ -2,6 +2,7 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all.order( created_at: :desc )
+    @movie = Movie.new
 
     respond_to do |format|
 
@@ -11,7 +12,7 @@ class MoviesController < ApplicationController
       format.json { render json: @movies }
 
     end
-  end 
+  end
 
 
   def create
@@ -27,7 +28,7 @@ class MoviesController < ApplicationController
 
         # Just render the object directly, no need
         #   to redirect
-        format.json { render  json: @movie, 
+        format.json { render  json: @movie,
                               status: :created }
 
       end
@@ -46,9 +47,9 @@ class MoviesController < ApplicationController
         # Note that the status code should change
         #   depending on the reason why it failed
         format.json { render nothing: true,
-                             status: 400 } # Bad Request 
+                             status: 400 } # Bad Request
 
-        # Re-render our New form using the 
+        # Re-render our New form using the
         #   `new.js.erb` template
         format.js { render :new }
 
@@ -62,9 +63,5 @@ class MoviesController < ApplicationController
   def post_params
     params.require( :post ).permit( :title, :body )
   end
-
-end
-
-
 
 end
