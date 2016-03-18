@@ -2,13 +2,13 @@
 <%= form_for :review, remote: true do |f| %>
 
   <%= f.label "Reviewer" %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, class: "form-field" %>
 
   <%= f.label "Review Title" %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, class: "form-field" %>
 
   <%= f.label "Review Text" %>
-  <%= f.text_field :review_text %>
+  <%= f.text_field :review_text, class: "form-field" %>
 
   <%= f.label "Movie" %>
   <%= f.collection_select :movie_id, Movie.all, :id, :title %>

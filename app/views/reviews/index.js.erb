@@ -1,5 +1,6 @@
 var $row = $("<%= j( render partial: 'row', locals: { review: @review }) %>");
 
 $("#review-table").prepend( $row );
+console.log("rendered with AJAX!!!");
 
-console.log("rendering with AJAX!!!");
+$(".form-field").val("");
