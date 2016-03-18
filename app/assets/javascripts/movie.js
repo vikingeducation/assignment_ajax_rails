@@ -42,10 +42,11 @@ Movies = (function(){
       data: data,
       success: function(data){
         showMovieListMovies();
-      } 
+      }, 
       error: function(){
         alert('Could not add your movie.');
-    })
+      },
+    });
   };
 
   var addMovieToList= function(movie){
@@ -55,7 +56,7 @@ Movies = (function(){
 
     var $newMovie = $("<tr><td id='movie-title'>" + title + "</td><td id='release_date'>" + release_date + "</td></tr>");
 
-    var('#movie-list').append($(newMovie));
+    $('#movie-list').append($(newMovie));
   }
 
   var showNoMovies = function() {
@@ -83,11 +84,8 @@ $(document).ready(function(){
    $('#movie-form').submit( function(e){
         var movieTitle = $(this.find("#title").val());
         console.log(moveTitle);
-        Movies.createMovie(movieTitle) );
-      }
-
-
-
+        Movies.createMovie(movieTitle);
+      });
  });
  
 
