@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
 
   def index
-    @movies = Movie.all.order( created_at: :asc )
+    @movies = Movie.all.order( created_at: :asc ).includes(:reviews)
     @movie = Movie.new
 
     respond_to do |format|
@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
       # Renders the usual `index.html.erb` template
       format.html
 
-      format.json { render json: @movies }
+      format.json {render json: @movies, :include => :reviews}
 
     end
   end

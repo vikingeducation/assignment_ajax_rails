@@ -71,22 +71,19 @@ var movieModule = (function(){
 
   var populateMovieTable = function() {
     movieData = JSON.parse( movieAjax.responseText );
+
     for ( var i = 0; i < movieData.length; i++ ) {
       var title = movieData[i].title;
       var date = movieData[i].created_at;
       var id = movieData[i].id;
+      var reviews = movieData[i].reviews;
 
-      _addMovieRowToTable(title,id,date);
-      // var row = $("<tr data-id='" + movieData[i].id + "'></tr>");
-      // var titleCell = $("<td>" + title + "</td>");
-      // var dateCell = $("<td>" + date + "</td>");
-
-      // row.append(titleCell).append(dateCell);
-      // $table.append(row);
+      _addMovieRowToTable(title,id,date,reviews);
+   
     }
   };
 
-  var _addMovieRowToTable = function(title,id,created_at) {
+  var _addMovieRowToTable = function(title,id,created_at,reviews) {
     var row = $("<tr data-id='" + id + "'></tr>");
     var titleCell = $("<td>" + title + "</td>");
     var dateCell = $("<td>" + created_at + "</td>");
