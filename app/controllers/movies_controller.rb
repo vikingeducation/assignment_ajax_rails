@@ -36,7 +36,12 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie
+    @movie = Movie.find(params[id])
+
+    respond_to do |format|
+      format.html {}
+      format.js {}
+    end
   end
 
 end

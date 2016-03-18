@@ -16,7 +16,9 @@
         </div>
         <br>
         <div class="form-group">
-          <input type="submit" value="Create Movie" class="btn btn-success">
+          <input type="submit" value="Create Movie" class="btn btn-success", 
+          <% :method => :post %>
+          <%:remote => true %> >
         </div>
       </form>
       <br>
