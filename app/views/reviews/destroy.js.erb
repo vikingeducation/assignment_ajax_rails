@@ -3,6 +3,7 @@ console.log("Deleting review with JS!!!");
 
 
 var $row = $('#<%= j("review-#{@review.id}") %>');
-
-$row.remove();
+$row.fadeOut(1000, function() {
+  $row.remove();
+});
 console.log("rendered with AJAX!!!");
