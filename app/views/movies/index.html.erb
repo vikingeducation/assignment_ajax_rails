@@ -7,7 +7,7 @@
   <div class="row">
     <h3>Create a Movie</h3>
 
-    <%= form_for @movie, class: 'form-group', remote: true do |f| %>
+    <%= form_for @movie, class: 'form-group' do |f| %>
       <%= f.label "Title: "%>
       <%= f.text_field :title, class: 'form-control' %><br>
       <%= f.submit 'Create Movie', class: 'btn-success' %>
