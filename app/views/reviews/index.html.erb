@@ -7,7 +7,7 @@
   <div class="row">
     <h3>Create a Review</h3>
 
-    <%= form_for @review, class: 'form-group', remote: true do |f| %>
+    <%= form_for @review, id: 'new-review-form', class: 'form-group', remote: true do |f| %>
       <%= f.label "Reviewer: " %>
       <%= f.text_field :reviewer_name, class: 'form-control' %>
       <br>
