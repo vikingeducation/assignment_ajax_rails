@@ -8,12 +8,12 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(whitelisted_params)
     @review.review_date = Date.today
+    
     respond_to do |format|
       if @review.save
-        format.html { redirect_to reviews_path }
-        format.js { redirect_to reviews_path }
+        format.js {}
       else
-        format.html { render :index }
+        format.js {}
       end
     end
   end

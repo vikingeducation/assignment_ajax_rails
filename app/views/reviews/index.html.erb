@@ -27,14 +27,18 @@
 
 
   <table id='review-list' class="table">
-    <tr>
-      <th>Movie Reviewed</th>
-      <th>Reviewer</th>
-      <th>Title</th>
-      <th>Review Text</th>
-      <th>Review Date</th>
-      <th>Delete</th>
-    </tr>
-    <%= render @reviews %>
+    <thead>
+      <tr>
+        <th>Movie Reviewed</th>
+        <th>Reviewer</th>
+        <th>Title</th>
+        <th>Review Text</th>
+        <th>Review Date</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @reviews %>
+    </tbody>
   </table>
 </div>

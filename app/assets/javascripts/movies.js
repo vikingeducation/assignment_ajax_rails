@@ -21,19 +21,12 @@ MOVIES.Movie = (function($){
     $('form').on('submit', function(event) {
       var $form = $(event.target);
       event.preventDefault();
-      $form = $form.serializeArray();
-
-      var data = {
-        utf8: $form[0].value, 
-        authenticity_token: $form[1].value,
-        title: $form[2].value,
-        commit: "Create Movie"
-      }
+      var data = $form.serializeArray();
 
       $.ajax({
         url: "http://localhost:3000/movies",
         method: "POST",
-        data: data,
+        data: {title: data[2].value},
         success: function(data){
           var $list = $('tbody');
           injectMovie(data, $list);
