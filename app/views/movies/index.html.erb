@@ -1,23 +1,21 @@
+<h3>Create a Movie</h3>
+<%= form_for Movie.new, remote: true do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br>
+  <%= f.submit %>
+<% end %>
+
+
 <div id="<%= controller_name + "-" + action_name %>">
-
-
-<h3>All Movies</h3>
-
-<table class="table table-striped">
-  <tr class="header">
-    <th>Title</th>
-    <th>Release Date</th> 
-  </tr>
-
-  <tbody class="table-body">
-
-  <!-- new rows go here -->
-
-  </tbody>
-
-
-</table>
-
-
-
+  <h3>All Movies</h3>
+  <table class="table table-striped">
+    <tr class="header">
+      <th>Title</th>
+      <th>Release Date</th>
+    </tr>
+    <tbody class="table-body">
+    <!-- new rows go here -->
+    </tbody>
+  </table>
 </div>
