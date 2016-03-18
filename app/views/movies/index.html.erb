@@ -1,7 +1,25 @@
-<table id='movie-list'>
-  <tr>
-    <th>Movie Title</th>
-    <th>Release Date</th>
-    <th>Review Count</th>
-  <tr>
-</table>
+<div class="container">
+  <br>
+  <div class="row text-center">
+    <h1>Smelly Potatoes Movies</h1>
+  </div>
+
+  <div class="row">
+    <h3>Create a Movie</h3>
+
+    <%= form_for @movie, remote: true do |f| %>
+      <%= f.label "Title: "%>
+      <%= f.text_field :title %><br>
+      <%= f.submit %>
+    <% end %>
+
+  </div>
+
+
+  <table id='movie-list' class="table">
+    <tr>
+      <th>Movie Title</th>
+      <th>Release Date</th>
+    </tr>
+  </table>
+</div>
