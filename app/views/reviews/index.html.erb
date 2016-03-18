@@ -1,0 +1,33 @@
+
+<div class="container">
+  <h1 class="text-center">Smelly Potatoes Reviews</h1>
+  <div class="status">
+  </div>
+
+  <h3 class="text-center">Create a Review</h3>
+
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+
+      <%= render :review_form_partial %>
+      <br>
+      <h3>All Reviews</h3>
+      <table class="table">
+        <thead>
+          <th>Movie Reviewed</th>
+          <th>Reviewer</th>
+          <th>Title</th>
+          <th>Review Text</th>
+          <th>Review Date</th>
+          <th>Delete</th>
+
+        <% @reviews.each do |review| %>
+          <%= render :review, :locals => { :review => review } %>
+        <% end %>
+        </thead>
+        <tbody id="review-list">
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

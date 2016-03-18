@@ -1,0 +1,9 @@
+
+
+<%= form_for @review, :remote => true do |f| %>
+  Reviewer: <%= f.text_field :reviewer %><br />
+  Title : <%= f.text_field :title %><br />
+  Text : <%= f.text_area :text %><br />
+  Movie : <%= f.collection_select :movie, Movie.all %><br />
+  <%= f.submit "Create Review" %>
+<% end %>
