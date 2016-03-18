@@ -17,7 +17,7 @@
 
 
 <div id="<%= controller_name + "-" + action_name %>">
-  <h3>All Movies</h3>
+  <h3>All Reviews</h3>
   <table class="table table-striped">
     <tr class="header">
       <th>Movie Title</th>
@@ -28,7 +28,7 @@
       <th>Delete Review?</th>
     </tr>
     <tbody class="table-body">
-    
+
     <% @reviews.each do |review| %>
 
       <%= render partial: 'review', locals: { review: review } %>

@@ -10,8 +10,6 @@ class MoviesController < ApplicationController
     end
   end
 
-
-
   def create
     @movie = Movie.new(movie_params)
     @movie.release_date = Date.today - rand(100);

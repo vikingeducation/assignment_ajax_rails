@@ -18,4 +18,4 @@
 
 
 // question: where to store global js vars?
-// var devURL = "http://localhost:3000";
+//var devURL = "http://localhost:3000";
