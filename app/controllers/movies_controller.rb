@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.new( movie_params )
 
-    if @Movie.save
+    if @movie.save
       flash[:success] = "Movie successfully created!"
 
       respond_to do |format|
@@ -26,8 +26,6 @@ class MoviesController < ApplicationController
         # Go back to the index page
         format.html { redirect_to movies_path }
 
-        # Just render the object directly, no need
-        #   to redirect
         format.json { render  json: @movie,
                               status: :created }
 
@@ -35,7 +33,7 @@ class MoviesController < ApplicationController
 
     else # failed to create
 
-      flash.now[:error] = "Post could not be created"
+      flash.now[:error] = "Movie could not be created"
 
       respond_to do |format|
 
@@ -60,8 +58,8 @@ class MoviesController < ApplicationController
 
 
   private
-  def post_params
-    params.require( :post ).permit( :title, :body )
+  def movie_params
+    params.require( :movie).permit( :title )
   end
 
 end

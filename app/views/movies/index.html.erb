@@ -1,7 +1,7 @@
 <h1>Smelly Potatoes Movies</h1>
 
 <h3>Create A Movie</h3>
-<%= form_for @movie, data: { ajaxremote: true } do |f| %>
+<%= form_for @movie, remote: true do |f| %>
   <%= f.label "Movie Title" %>
   <%= f.text_field :title %>
   <%= f.submit %>
