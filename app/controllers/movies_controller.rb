@@ -8,11 +8,9 @@ class MoviesController < ApplicationController
       format.html
       format.json { render :json => @movies, :status => 201 }
     end
-
-
-
-
   end
+
+
 
   def create
     @movie = Movie.new(movie_params)
