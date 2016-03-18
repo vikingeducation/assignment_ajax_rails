@@ -27,11 +27,5 @@
           <th>Release Date</th>
         </thead>
         <tbody id="movie-list">
-          <% @movies.each do |movie| %> 
-          <tr>
-            <td id="movie-title"><%= movie.title %></td>
-            <td id="movie-released"><%=movie.release_date %></td>
-          </tr>
-          <% end %>
         </tbody>
       </table>
