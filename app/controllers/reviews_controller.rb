@@ -19,7 +19,6 @@ class ReviewsController < ApplicationController
         format.html { redirect_to reviews_path, :flash => { :success => 'Review created' } }
         format.js  do
           flash.now[:success] = 'Review created'
-          render :index
         end
       end
     else
@@ -27,7 +26,6 @@ class ReviewsController < ApplicationController
         format.html { redirect_to reviews_path, :flash => { :error => 'Review not created' } }
         format.js do
           flash.now[:error] = 'Review not created'
-          render :index
         end
       end
     end
