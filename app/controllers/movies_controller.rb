@@ -22,7 +22,7 @@ class MoviesController < ApplicationController
       respond_to do |format|
         flash[:success] = 'Movie created!'
         format.html { redirect_to movies_path }
-        format.json { render :json => @movie.to_json, :status => 200, :flash => flash }
+        format.json { render :json => @movie.to_json, :status => 201, :flash => flash }
       end
     else
       flash[:error] = 'Movie not created: ' +
