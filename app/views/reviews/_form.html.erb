@@ -1,0 +1,27 @@
+<%= form_for Review.new, remote: true do |review_fields| %>
+
+  <p>
+    <%= review_fields.label :reviewer_name %><br>
+    <%= review_fields.text_field :reviewer_name %>
+  </p>
+
+  <p>
+    <%= review_fields.label :title %><br>
+    <%= review_fields.text_field :title %>
+  </p>
+
+  <p>
+    <%= review_fields.label :review_text %><br>
+    <%= review_fields.text_area :review_text %>
+  </p>
+
+  <p>
+    <%= review_fields.label :movie %><br>
+    <%= review_fields.collection_select :movie_id, @movies, :id, :title %>
+  </p>
+
+  <p>
+    <%= review_fields.submit %>
+  </p>
+
+<% end %>

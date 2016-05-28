@@ -1,0 +1,23 @@
+<h1>Smelly Potatoes Reviews</h1>
+
+<h3>Write a review</h3>
+<%= render 'form' %>
+
+<br>
+
+<h3>All Reviews</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Movie</th>
+      <th>Reviewer</th>
+      <th>Title</th>
+      <th>Review</th>
+      <th>Review Date</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody data-content="reviews">
+    <%= render @reviews %>
+  </tbody>
+</table>

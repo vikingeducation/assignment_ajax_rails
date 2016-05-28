@@ -1,0 +1,13 @@
+// Clear form
+$('form')[0].reset();
+
+// Add table row
+var $tbody = $('tbody[data-content="reviews"]');
+
+var reviewRow = "<%= j( render partial: @review ) %>";
+var $row = $(reviewRow);
+
+$tbody.prepend($row);
+
+// Re-render flash
+$('#flash').html("<%= j( render partial: 'layouts/flash' ) %>")

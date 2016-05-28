@@ -1,0 +1,12 @@
+<%= form_for Movie.new, data: {ajaxremote: true} do |movie_fields| %>
+
+  <p>
+    <%= movie_fields.label :title %><br>
+    <%= movie_fields.text_field :title %>
+  </p>
+
+  <p>
+    <%= movie_fields.submit %>
+  </p>
+
+<% end %>
