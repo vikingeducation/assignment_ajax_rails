@@ -14,6 +14,7 @@ class ReviewsController < ApplicationController
 
       respond_to do |format|
         format.html { redirect_to reviews_path }
+        format.js {}
       end
     else
       flash[:error] = "Oops, could not save review. Please fill in all fields."
@@ -21,6 +22,7 @@ class ReviewsController < ApplicationController
       respond_to do |format|
         # TODO: fix this so that it re-renders instead (can't access @movies)
         format.html { redirect_to reviews_path }
+        format.js {}
       end
     end
   end
