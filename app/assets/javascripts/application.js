@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+'use strict;'
+
+$(document).ready(function(){
+  APP.MainModule.init()
+});
