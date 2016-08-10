@@ -1,0 +1,43 @@
+<div>
+
+	<div class= "col-xs-10 col-xs-offset-1">
+		
+		<div class= "jumbotron">
+			<div class= "container">
+				<h1>Smelly Potatoes Movies</h1>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="col-xs-7 col-xs-offset-1">
+
+		<h3>Create a Movie</h3>
+
+		<%= form_for @movie, data: { ajaxremote: true } do |f| %>
+
+			<%= f.label :title %>
+			<%= f.text_field :title %>
+
+			<%= f.submit class: 'btn btn-primary' %>
+				
+		<% end %>
+		  
+
+
+
+
+		<h3>All Movies</h3>
+
+		<table class= "table table-striped">
+			<thead>
+				<th>Title</th>
+				<th>Release Date</th>
+			</thead>
+			
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+
+</div>
