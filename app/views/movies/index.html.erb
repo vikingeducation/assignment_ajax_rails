@@ -6,10 +6,10 @@
     <%= form_for @movie do |movie| %>
   
       <%= movie.label :title %>:
-      <%= movie.text_field :title %><br />
+      <%= movie.text_field :title, id:"new-form-text" %><br />
 
 
-      <%= movie.submit value:"Submit Movie", class: "btn btn-primary"%>
+      <%= movie.submit id:"movie-submit", value:"Submit Movie", class: "btn btn-primary"%>
   
     <% end %>
     

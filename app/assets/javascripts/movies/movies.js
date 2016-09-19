@@ -14,7 +14,7 @@ APP.Movie = (function($) {
     }
   };
 
-  stub.getMovies = function() {
+  var getMovies = function() {
     $.ajax({
       url: "/movies",
       contentType: "application/json",
@@ -27,6 +27,32 @@ APP.Movie = (function($) {
     })
   };
 
+  var setSubmitListener = function() {
+    $("#movie-submit").on("click", function(event){
+      event.preventDefault();
+      var $title = $('#new-form-text').val();
+      console.log($title);
+      var data = {
+        title: $title,
+        release_date: new Date().toISOString()
+      }
+      $.post({
+        url: "/movies",
+        data: JSON.stringify(data),
+        dataType: "json",
+        contentType: "application/json",
+        success: function(){
+          populateMovies([data])
+        }
+      })
+    });
+  };
+
+  stub.init = function() {
+    getMovies();
+    setSubmitListener();
+  }
+
 
   return stub;
 })($);
@@ -34,7 +60,7 @@ APP.Movie = (function($) {
 
 $(document).ready(function() {
   if ($('#movies-index')) {
-    APP.Movie.getMovies();
+    APP.Movie.init();
   }
 });
 

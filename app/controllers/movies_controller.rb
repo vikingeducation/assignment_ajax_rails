@@ -14,15 +14,10 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(whitelisted_movie_params)
-    @movie.release_date = Time.now
-
-    unless @movie.save
-      
-      render json: {errors: @post.errors.full_messages }, status: :unprocessable_entity
-
+    if @movie.save
+      format.json { render :show, status: :created, location: @movie}
     end
 
-    respond_to :js
   end
 
 
