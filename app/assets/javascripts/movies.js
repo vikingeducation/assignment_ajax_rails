@@ -1,15 +1,20 @@
 $(document).on('page:change', function(){
   getMovies();
-})
+});
+
+$(document).ready(function(){
+  getMovies();
+  addListeners();
+});
 
 var getMovies = function(){
   $.ajax({
-    url:"movies",
+    url:"/movies",
     type: "GET",
     dataType: "json",
     success: addMovies
-  })
-}
+  });
+};
 
 var addMovies = function(data){
   data.forEach(function(movie){
@@ -21,5 +26,9 @@ var addMovies = function(data){
     $newRow.append($title);
     $newRow.append($date);
     $('#movies').append($newRow);
-  })
-}
+  });
+};
+
+var addListeners = function() {
+  
+};
