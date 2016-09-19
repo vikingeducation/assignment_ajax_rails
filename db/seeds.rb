@@ -10,5 +10,14 @@
 SEED = 10
 
 SEED.times do |idx|
-  movie = Movie.new
+  movie = Movie.create({title: Faker::Hipster.words(5),
+                        release_date: Faker::Date.between(50.years.ago,Date.today)})
+  5.times do |idx|
+    movie.reviews.create ({reviewer_name: Faker::Hipster.words(2),
+                          title: Faker::Hipster.sentences(1),
+                          review_text: Faker::Hipster.sentences(4),
+                          review_date: Faker::Date.between(50.years.ago,Date.today)})
+  end
+
+  movie.save
 end
