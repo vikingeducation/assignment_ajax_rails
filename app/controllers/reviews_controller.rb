@@ -10,8 +10,19 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @review.save
-    redirect_to reviews_path
+    if @review.save
+      flash.now[:success] = "Review created"
+      respond_to do |format|
+        format.html { redirect_to reviews_path }
+        format.js { render :create_success }
+      end
+    else
+      flash.now[:error] = "Review couldn't be created"
+      respond_to do |format|
+        format.html { render :index }
+        format.js { render :index }
+      end
+    end
   end
 
   def destroy

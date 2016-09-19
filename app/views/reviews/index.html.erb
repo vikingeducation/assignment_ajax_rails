@@ -1,5 +1,5 @@
 <h2>Create a Review</h2>
-<%= form_for @review do |f| %>
+<%= form_for @review, remote: true do |f| %>
   <%= f.label :reviewer_name %><br>
   <%= f.text_field :reviewer_name %><br>
   <%= f.label :title %><br>
