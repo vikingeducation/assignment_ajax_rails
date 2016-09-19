@@ -13,6 +13,7 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(whiteListedMovieParams)
+    @movie.release_date = Time.now
     if @movie.save
         render json: @movie
     end

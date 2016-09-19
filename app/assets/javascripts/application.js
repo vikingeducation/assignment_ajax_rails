@@ -14,3 +14,15 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(document).ready(function() {
+  if ($('body[data-controller="movies-index"]').length) {
+    // Attach our listeners after the DOM loads
+    JS.movies.init();
+    JS.movies.addMovieListener();
+  }
+  if ($('body[data-controller="reviews-index"]').length) {
+    JS.reviews.addReviewListener();
+  }
+});
