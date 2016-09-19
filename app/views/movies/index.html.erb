@@ -4,8 +4,15 @@
       <h1>Movies!!</h1>
     </div>
     <%= form_for @movie do |movie| %>
-      <%= movie.text :title %>
+  
+      <%= movie.label :title %>:
+      <%= movie.text_field :title %><br />
+
+
+      <%= movie.submit value:"Submit Movie", class: "btn btn-primary"%>
+  
     <% end %>
+    
     <div class="col-sm-4 col-sm-offset-2">
       <table id="movies-table" class="table">
          <thead> 
