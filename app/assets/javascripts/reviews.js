@@ -13,8 +13,13 @@ var reviews = (function(){
     $text.val("");
   }
 
+  var deleteReview = function(id) {
+    $("[data-id ="+ id + "]").remove();
+  }
+
   return {
     appendReview: appendReview,
-    clearForm: clearForm
+    clearForm: clearForm,
+    deleteReview: deleteReview
   }
 })();

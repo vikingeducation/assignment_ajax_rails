@@ -28,12 +28,19 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:id])
+    @review_id = params[:id]
     if @review.destroy
-      flash["success"] = "Review deleted."
-      redirect_to reviews_path
+      respond_to do |format|
+        flash.now["success"] = "Review deleted."
+        format.html{redirect_to reviews_path}
+        format.js {render :destroy}
+      end   
     else
-      flash["error"] = "Error. Review not created."
-      redirect_to reviews_path
+      respond_to do |format|
+        flash["error"] = "Error. Review not created."
+        format.html{redirect_to reviews_path}
+        format.js {render :index}
+      end
     end
   end
 

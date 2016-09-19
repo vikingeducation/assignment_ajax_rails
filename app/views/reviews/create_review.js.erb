@@ -5,5 +5,5 @@ var _$reviewRow = $( _reviewRow );
 reviews.appendReview( _$reviewRow );
 reviews.clearForm();
 $message = $("<%= j(render partial: 'shared/flash') %>").hide();
-$message.appendTo(".notice").slideDown(1000);
+$message.appendTo(".notice").slideDown(1000).delay(2000).slideUp(500);
 <% flash.clear %>
