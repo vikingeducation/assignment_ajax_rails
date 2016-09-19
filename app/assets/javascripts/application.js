@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+  if ($('body').attr('id') === 'movies-index') {
+    MoviesView.init();
+  }
+});
