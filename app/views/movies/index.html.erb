@@ -1,4 +1,10 @@
 <h2>All Movies</h2>
+<%= form_for @movies, data: { ajaxremote: true } do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.submit :submit %>
+<% end %>
+
 <table data-movies-table>
   <tr>
     <th>Title</th>

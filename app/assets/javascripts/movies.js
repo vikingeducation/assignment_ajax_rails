@@ -2,9 +2,11 @@ var AJAX = {}
 
 var MoviesView = (function () {
   var _$movieTable;
+  var _$newMovieForm;
 
   var init = function() {
     _cacheDOM();
+    _handleAjaxForm();
   };
 
   var _cacheDOM = function() {
@@ -21,10 +23,18 @@ var MoviesView = (function () {
       newRow.append(newTitle);
       newRow.append(newReleaseDate);
       newRow.appendTo(_$movieTable);
-      // _$movieTable.append();
     });
   };
 
+  var _handleAjaxForm = function () {
+    _$newMovieForm = $('[data-ajaxremote]');
+  };
+
+  var listeners = {
+    onSubmit: function() {
+
+    }
+  };
 
   return {
     init: init,
