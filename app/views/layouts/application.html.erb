@@ -18,6 +18,11 @@
   </head>
 
   <body>
+    <%= link_to "Movies", movies_path %>
+    <%= link_to "Reviews", reviews_path %>
+    <div class="notice">
+      <%= render "shared/flash", :locals => { :flash => flash } %>
+    </div>
     <h1>Smelly Potatoes Movies</h1>
     <%= yield %>
   </body>

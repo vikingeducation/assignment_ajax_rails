@@ -1,6 +1,6 @@
-console.log("THIS WORKS")
+var _reviewRow = "<%= j( render partial: 'review', locals: { review: @review } ) %>";
+var _$reviewRow = $( _reviewRow );
 
-var reviewRow = "<%= j( render partial: 'review', locals: { review: @review } ) %>"
-var $reviewRow = $( reviewRow );
-
-$('.review-header').after($reviewRow);
+//reviews is a module in assets/javascript/reviews.js
+reviews.appendReview(_$reviewRow );
+reviews.clearForm();

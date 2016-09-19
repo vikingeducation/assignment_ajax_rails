@@ -33,6 +33,8 @@ var MovieModule = (function() {
     $row.append($movieTitle);
     $row.append($releaseDate)
     $table.append($row);
+    $(".notice").html("<%= j(render :partial => 'shared/flash' , :locals => { :flash => flash })%>");
+
   };
 
   return {

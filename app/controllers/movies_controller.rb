@@ -18,18 +18,17 @@ class MoviesController < ApplicationController
     if @movie.save
       @movie.release_date = @movie.created_at.strftime("%m/%d/%Y")
       @movie.save
-      flash["success"] = "Your movie has been added"
 
       respond_to do |format|
+        flash.now[:notice] = "Your movie has been added"
         format.html {redirect_to root_path}
         #format.js {render :movie_create}
         format.json {render json: @movie, :status => :created}
       end
       
     else
-      flash.now["error"] = "Your movie was not saved"
-
       respond_to do |format|
+        flash.now[:notice] = "Your movie was not saved"
         format.html {render :index}
         #format.js {render :index}
         format.json {render nothing: true, status: 400 }

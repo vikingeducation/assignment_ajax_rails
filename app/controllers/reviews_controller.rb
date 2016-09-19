@@ -12,15 +12,15 @@ class ReviewsController < ApplicationController
     if @review.save
       @review.review_date = @review.created_at.strftime("%m/%d/%Y")
       @review.save
-      flash["success"] = "Review created."
       respond_to do |format|
+        flash.now[:notice] = "Review created."
         format.html { redirect_to reviews_path }
         format.js {render :create_review}
       end
       
     else
-      flash["error"] = "Error. Review not created."
       respond_to do |format|
+        flash.now[:notice] = "Error. Review not created."
         format.html { redirect_to reviews_path }
         format.js {render :index}
       end
@@ -31,7 +31,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     if @review.destroy
-      flash["success"] = "Review deleted."
+      flash.now["success"] = "Review deleted."
       redirect_to reviews_path
     else
       flash["error"] = "Error. Review not created."
