@@ -42,12 +42,12 @@ JS.movies = (function() {
       $movieRow.append($td3);
       var $td4 = $('<td>').text(el.review_text);
       $movieRow.append($td4);
-      $('[data-id="' + el.movie_id + '"]').append($movieRow);
+      $movie = $('[data-id="' + el.movie_id + '"]')
+      $movie.append($movieRow);
     });
   };
 
   var populateTable = function(response) {
-    // $('ul').html("");
     $.each(response, function(index, el) {
       var $movieListing = $('<li>').text(el.title).attr('data-id', el.id);
       $('ul').append($movieListing);
@@ -59,9 +59,7 @@ JS.movies = (function() {
       url: "/movies",
       method: 'POST',
       data: JSON.stringify({
-        movie: {
-          title: movieData
-        }
+        movie: { title: movieData }
       }),
       contentType: 'application/json',
       dataType: 'json',
@@ -99,6 +97,7 @@ JS.movies = (function() {
       // if you're at the bottom of the page
       if  ($(window).scrollTop() == $(document).height() - $(window).height()){
         ajaxMovies("/?page="+counter);
+        // ajaxReviews();
         counter++;
       }
     });

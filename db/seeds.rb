@@ -11,7 +11,7 @@ Movie.destroy_all
 Review.destroy_all
 
 
-10.times do
+80.times do
 
   m = Movie.new
   m.title = Faker::Beer.name
