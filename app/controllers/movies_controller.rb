@@ -11,17 +11,18 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
-    @movie.release_date = Date.new(2016, 9, 19)
     if @movie.save
-      respond_to html
-      respond_to json { render :json => @movie }
+      respond_to do |format|
+        format.html
+        format.json { render :json => @movie }
+      end
     end
   end
 
   private
 
   def movie_params
-    params.require(:movie).permit(:title)
+    params.require(:movie).permit(:title, :release_date)
   end
 
 end
