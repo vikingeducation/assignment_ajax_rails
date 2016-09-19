@@ -1,14 +1,13 @@
 <h2>Create a Review</h2>
 <%= form_for @review, remote: true do |f| %>
-  <%= f.label :reviewer_name %>
-  <%= f.text_field :reviewer_name %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :review_text %>
-  <%= f.text_field :review_text %>
-  <!-- Need a select tag for Movies at this point. -->
-
-  <%= f.submit :submit %>
+  <%= f.label :reviewer_name %><br>
+  <%= f.text_field :reviewer_name %><br>
+  <%= f.label :title %><br>
+  <%= f.text_field :title %><br>
+  <%= f.label :review_text %><br>
+  <%= f.text_field :review_text %><br>
+  <%= f.collection_select :movie_id, @movies, :id, :title %><br>
+  <%= f.submit :submit %><br>
 <% end %>
 
 <h2>All reviews</h2>
