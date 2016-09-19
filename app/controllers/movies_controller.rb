@@ -8,4 +8,21 @@ class MoviesController < ApplicationController
       format.json { render :json => @movies }
     end
   end
+
+  def create
+    params['movie']['release_date'] = Time.now
+    @movie = Movie.new(movie_params)
+    if @movie.save
+      render json: @movie
+    else
+      render nothing: true
+    end
+  end
+
+  private
+
+    def movie_params
+      params.require(:movie).permit(:title, :release_date)
+    end
+
 end

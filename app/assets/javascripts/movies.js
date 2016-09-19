@@ -9,13 +9,17 @@ var movies = {
     var $table = $("#movie-table");
 
     for(var i in response) {
-      var $newRow = $("<tr>")
-      var $title = $("<td>").text(response[i].title)
-      var $releaseDate = $("<td>").text(response[i].release_date)
-      $newRow.append($title)
-      $newRow.append($releaseDate)
-      $table.append($newRow)
+      movies.createMovieRow(response[i], $table);
     }
+  },
+
+  createMovieRow: function(movie, table) {
+    var $newRow = $("<tr>")
+    var $title = $("<td>").text(movie.title)
+    var $releaseDate = $("<td>").text(movie.release_date)
+    $newRow.append($title)
+    $newRow.append($releaseDate)
+    table.append($newRow)
   },
 
 
@@ -24,10 +28,31 @@ var movies = {
   },
 
   createNewMovie: function() {
+    $("form[data-ajaxremote='true']").submit( function( event ){
 
+      event.preventDefault();
+
+      var $form = $( event.target );
+      var formData = $form.serializeArray();
+      $('input[type="text"]').val('');
+
+      $.ajax({
+        url: $form.attr("action"),
+        method: "POST",
+        data: formData,
+        dataType: "json",
+        success: movies.UpdateTableWithMovie
+      })
+    });
+  },
+
+  UpdateTableWithMovie: function(response) {
+    var $table = $("#movie-table");
+    movies.createMovieRow(response, $table);
   }
 }
 
 $(document).ready(function() {
   movies.getAllMovies();
+  movies.createNewMovie();
 })
