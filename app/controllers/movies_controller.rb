@@ -10,9 +10,9 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(whitelisted_params)
-    respond_to do |format| 
+    respond_to do |format|
 
-      if @movie.save 
+      if @movie.save
         format.html { redirect_to @movie }
         format.json { render json: @movie, status: 200 }
       else
@@ -26,6 +26,6 @@ class MoviesController < ApplicationController
   private
 
   def whitelisted_params
-    params.require(:movie).permit(:title)
+    params.require(:movie).permit(:title,:release_date)
   end
 end

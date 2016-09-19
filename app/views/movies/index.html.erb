@@ -2,6 +2,8 @@
 <%= form_for @movie, data: { ajaxremote: true } do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
+  <%= f.label :release_date %>
+  <%= f.date_field :release_date %>
   <%= f.submit :submit %>
 <% end %>
 

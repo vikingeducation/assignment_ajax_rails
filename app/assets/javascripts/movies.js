@@ -5,6 +5,7 @@ var MoviesView = (function (AJAX) {
   var _$newMovieForm;
 
   var init = function() {
+    console.log('This script file is being run');
     _cacheDOM();
     _handleAjaxForm();
   };
