@@ -1,6 +1,6 @@
 var AJAX = {}
 
-var MoviesView = (function () {
+var MoviesView = (function (AJAX) {
   var _$movieTable;
   var _$newMovieForm;
 
@@ -27,24 +27,38 @@ var MoviesView = (function () {
   };
 
   var _handleAjaxForm = function () {
-    _$newMovieForm = $('[data-ajaxremote]');
+    _$newMovieForm = $('form[data-ajaxremote]');
+    console.log(_$newMovieForm);
+    _$newMovieForm.submit(listeners.onMoviesFormSubmit);
   };
 
   var listeners = {
-    onSubmit: function() {
-
+    onMoviesFormSubmit: function(event) {
+      event.preventDefault();
+      var $form = $(event.target);
+      AJAX.movies.postMovies($form, _addMovieRowToTable);
     }
+  };
+
+  var _addMovieRowToTable = function(data) {
+    console.log("Adding movie row to table");
+    var newRow = $('<tr>');
+    var newTitle = $('<td>').text(data.title);
+    var newReleaseDate = $('<td>').text(data.release_date);
+    newRow.append(newTitle);
+    newRow.append(newReleaseDate);
+    newRow.appendTo(_$movieTable);
   };
 
   return {
     init: init,
   };
 
-})();
+})(AJAX);
 
 AJAX.movies = (function() {
 
-  var getMovies = function(callback) {
+  var getMovies = function (callback) {
     $.ajax({
       url: "/movies.json",
       method: "GET",
@@ -53,8 +67,22 @@ AJAX.movies = (function() {
     });
   };
 
+  var postMovies = function (form, callback) {
+    var formData = form.serializeArray();
+    $.ajax({
+      url: form.attr("action"),
+      method: "POST",
+      data: formData,
+      dataType: "json",
+      success: function(data) {
+        callback(data);
+      }
+    })
+  };
+
   return {
-    getMovies: getMovies
+    getMovies: getMovies,
+    postMovies: postMovies
   };
 
 })();
