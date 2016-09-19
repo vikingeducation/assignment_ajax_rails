@@ -2,5 +2,8 @@ var _reviewRow = "<%= j( render partial: 'review', locals: { review: @review } )
 var _$reviewRow = $( _reviewRow );
 
 //reviews is a module in assets/javascript/reviews.js
-reviews.appendReview(_$reviewRow );
+reviews.appendReview( _$reviewRow );
 reviews.clearForm();
+$message = $("<%= j(render partial: 'shared/flash') %>").hide();
+$message.appendTo(".notice").slideDown(1000);
+<% flash.clear %>

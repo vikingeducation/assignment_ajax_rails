@@ -17,7 +17,6 @@ class ReviewsController < ApplicationController
         format.html { redirect_to reviews_path }
         format.js {render :create_review}
       end
-      
     else
       respond_to do |format|
         flash.now[:notice] = "Error. Review not created."
@@ -25,13 +24,12 @@ class ReviewsController < ApplicationController
         format.js {render :index}
       end
     end
-
   end
 
   def destroy
     @review = Review.find(params[:id])
     if @review.destroy
-      flash.now["success"] = "Review deleted."
+      flash["success"] = "Review deleted."
       redirect_to reviews_path
     else
       flash["error"] = "Error. Review not created."

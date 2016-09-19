@@ -16,10 +16,7 @@
 //= require_tree .
 
 $(document).ready(function() {
-  $.get("/movies", '', function(event) {
-    populate(event);
-  }, "json")
-  //submitNewMovie();
+  $.get("/movies", '', function(event) { populate(event); }, "json")
   MovieModule.formListener();
 });
 
