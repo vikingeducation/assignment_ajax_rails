@@ -2,10 +2,12 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
+    @reviews = Review.all.includes(:movie)
+    @data = [@movies, @reviews]
 
     respond_to do |format|
       format.html
-      format.json { render :json => @movies }
+      format.json { render :json => @data }
     end
   end
 
