@@ -20,7 +20,6 @@ class ReviewsController < ApplicationController
 
     if @review.save
       respond_to :js
-      redirect_to reviews_path
     end
   end
 

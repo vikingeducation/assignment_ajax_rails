@@ -80,7 +80,7 @@
           </tr>
         </thead>
 
-        <tbody>
+        <tbody id="review-list">
           <% @reviews.each do |review| %>
             <%= render partial: "shared/review", locals: { review: review} %>
           <% end %>

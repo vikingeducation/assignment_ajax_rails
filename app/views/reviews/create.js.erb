@@ -1,0 +1,5 @@
+(function(){
+  $("#review-list").prepend("<%= escape_javascript(render partial: 'shared/review', locals: {review: @review}) %>");
+  $("#review-list").children().first().hide().show(3000);
+  $("#new_review").find("input[type='text']").val("");
+})();
