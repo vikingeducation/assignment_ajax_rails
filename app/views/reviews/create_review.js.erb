@@ -1,0 +1,6 @@
+console.log("THIS WORKS")
+
+var reviewRow = "<%= j( render partial: 'review', locals: { review: @review } ) %>"
+var $reviewRow = $( reviewRow );
+
+$('.review-header').after($reviewRow);

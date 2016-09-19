@@ -1,0 +1,14 @@
+<%= form_for @review, remote: true do |f| %>
+  <%= f.label :Reviewer %>
+  <%= f.text_field :reviewer_name %></br>
+  <%= f.label :title %>
+  <%= f.text_field :title %></br>
+  <%= f.label :text %>
+  <%= f.text_field :review_text %></br>
+  <%= f.label :movie %>
+  <%= f.collection_select( :movie_id, 
+                            Movie.all, 
+                            :id, 
+                            :title ) %>
+  <%= f.submit "Create Review", class: "review-submit-button" %>
+<% end %></br></br>
