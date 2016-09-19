@@ -33,10 +33,10 @@ var populate = function(event) {
   }
 };
 
-var submitNewMovie = function() {
-  //$(".movie-submit-button").on("click", function(event) {
-    //Remove below when ready to test
-    //event.preventDefault();
-    console.log($("movie[title]").text());
-  })
-}
+// var submitNewMovie = function() {
+//   $(".movie-submit-button").on("click", function(event) {
+//     Remove below when ready to test
+//     event.preventDefault();
+//     console.log($("movie[title]").text());
+//   })
+// }
