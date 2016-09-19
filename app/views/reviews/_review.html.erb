@@ -1,0 +1,13 @@
+<tr>
+  <%= content_tag :td, review.movie.title %>
+  <%= content_tag :td, review.reviewer_name %>
+  <%= content_tag :td, review.title %>
+  <%= content_tag :td, review.review_text %>
+  <%= content_tag :td, review.review_date %>
+  <%=
+    link = link_to 'delete', review_path(review),
+                          data: { review_destroy: review.id,
+                                  review_parent_id: review.movie_id }
+    content_tag :td, link
+  %>
+</tr>

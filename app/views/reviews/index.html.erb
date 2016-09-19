@@ -21,4 +21,7 @@
     <th>Review Date</th>
     <th>Delete</th>
   </tr>
+  <% @reviews.each do |review| %>
+    <%= render partial: 'review', locals: { review: review } %>
+  <% end %>
 </table>
