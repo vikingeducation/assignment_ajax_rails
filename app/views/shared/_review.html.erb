@@ -1,0 +1,25 @@
+<tr>
+  <td> 
+    <%= review.movie.title %>
+  </td>
+  <td>
+    <%= review.reviewer_name %>
+  </td>
+
+  <td>
+    <%= review.title %>
+  </td>
+
+  <td>
+    <%= review.review_text %>
+  </td>
+
+  <td>
+    <%= review.review_date %>
+  </td>
+
+  <td>
+    <%= link_to "Delete", review_path(review), method: "delete", class: "btn btn-danger" %>
+  </td>
+
+</tr>

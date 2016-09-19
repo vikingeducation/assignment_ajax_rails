@@ -14,16 +14,19 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(whitelisted_movie_params)
-    if @movie.save
-      format.json { render :show, status: :created, location: @movie}
-    end
+    
 
+    respond_to do |format|
+      if @movie.save
+       format.json { render :json => @movie, status: :created, location: @movie}
+      end
+    end
   end
 
 
   private
     def whitelisted_movie_params
-      params.require(:movie).permit(:title)
+      params.require(:movie).permit(:title, :release_date)
     end
 
 end

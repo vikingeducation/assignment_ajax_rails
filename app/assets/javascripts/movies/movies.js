@@ -1,10 +1,10 @@
 var APP = APP || {};
 
-
 APP.Movie = (function($) {
   var stub = {};
 
   var populateMovies = function(json) {
+    console.log(json);
     for (var i = 0; i < json.length; i++) {
       $newRow = $('<tr></tr');
       $title = $("<td>" + json[i]["title"] + "</td>");
@@ -28,14 +28,16 @@ APP.Movie = (function($) {
   };
 
   var setSubmitListener = function() {
+    var newDate = new Date();
+
     $("#movie-submit").on("click", function(event){
       event.preventDefault();
       var $title = $('#new-form-text').val();
-      console.log($title);
       var data = {
         title: $title,
-        release_date: new Date().toISOString()
+        release_date: newDate
       }
+
       $.post({
         url: "/movies",
         data: JSON.stringify(data),
@@ -59,7 +61,7 @@ APP.Movie = (function($) {
 
 
 $(document).ready(function() {
-  if ($('#movies-index')) {
+  if ($('#movies-index').length) {
     APP.Movie.init();
   }
 });
