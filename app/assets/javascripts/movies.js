@@ -6,6 +6,7 @@ JS.movies = (function() {
     ajaxMovies("/movies");
     ajaxReviews();
     addPageListener();
+    scrollLoad();
   };
 
   var ajaxMovies = function(url) {
@@ -46,7 +47,7 @@ JS.movies = (function() {
   };
 
   var populateTable = function(response) {
-    $('ul').html("");
+    // $('ul').html("");
     $.each(response, function(index, el) {
       var $movieListing = $('<li>').text(el.title).attr('data-id', el.id);
       $('ul').append($movieListing);
@@ -89,6 +90,20 @@ JS.movies = (function() {
         ajaxMovies(url);
     });
   };
+
+  var scrollLoad = function(){
+    var counter = 2;
+
+    // this triggers whenever you scroll
+    $(window).scroll(function(){
+      // if you're at the bottom of the page
+      if  ($(window).scrollTop() == $(document).height() - $(window).height()){
+        ajaxMovies("/?page="+counter);
+        counter++;
+      }
+    });
+  };
+
 
   return stub;
 })();
