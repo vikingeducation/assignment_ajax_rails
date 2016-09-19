@@ -2,6 +2,10 @@ class ReviewsController < ApplicationController
   def index
     @reviews = Review.paginate(page: params[:page], per_page: 10)
     @review = Review.new
+    respond_to do |format|
+        format.html{}
+        format.js{}
+    end
   end
 
   def create
