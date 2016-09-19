@@ -1,19 +1,22 @@
 var AJAX = {}
 
 var MoviesView = (function (AJAX) {
-  var _$movieTable;
+  var _$movieTable; 
+  var _$reviewsTable;
   var _$newMovieForm;
 
   var init = function() {
+    _$movieTable = $('[data-movies-table]');
+    _$reviewsTable = $('[data-reviews-table]');
     console.log('This script file is being run');
     _cacheDOM();
     _handleAjaxForm();
   };
 
   var _cacheDOM = function() {
-    _$movieTable = $('[data-movies-table]');
-    _$reviewsTable = $('[data-reviews-table]');
-    AJAX.movies.getMovies(_fillMoviesTable);
+
+    AJAX.movies.getData("/movies.json", _fillMoviesTable);
+    AJAX.movies.getData("/reviews.json", _fillReviewsTable);
   };
 
   var _fillMoviesTable = function(response) {
@@ -30,10 +33,10 @@ var MoviesView = (function (AJAX) {
   var _fillReviewsTable = function(response) {
     response.forEach(function(row) {
       var newRow = $('<tr>');
-      var newMovieTitle = $('<td>').text(row.movie.title);
+      var newMovieTitle = $('<td>').text(row.movie);
       var newReviewerName = $('<td>').text(row.reviewer_name);
       var newReviewTitle = $('<td>').text(row.title);
-      var newReviewText = $('<td>').text(row.text);
+      var newReviewText = $('<td>').text(row.review_text);
       var newReviewDate = $('<td>').text(row.review_date);
       newRow.append(newMovieTitle);
       newRow.append(newReviewerName);
@@ -76,9 +79,9 @@ var MoviesView = (function (AJAX) {
 
 AJAX.movies = (function() {
 
-  var getMovies = function (callback) {
+  var getData = function (url, callback) {
     $.ajax({
-      url: "/movies.json",
+      url: url,
       method: "GET",
       dataType: "json",
       success: callback
@@ -99,7 +102,7 @@ AJAX.movies = (function() {
   };
 
   return {
-    getMovies: getMovies,
+    getData: getData,
     postMovies: postMovies
   };
 

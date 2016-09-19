@@ -3,8 +3,17 @@ class ReviewsController < ApplicationController
     @reviews = Review.all
     @review = Review.new
     @movies = Movie.all
+    formatted_reviews = @reviews.map do |review|
+      {title: review.title,
+        movie: review.movie.title,
+        reviewer_name: review.reviewer_name,
+        review_text: review.review_text,
+        review_date: review.review_date
+      }
+    end
     respond_to do |format|
       format.html
+      format.json { render json: formatted_reviews, status: 200 }
     end
   end
 
