@@ -22,7 +22,8 @@ class MoviesController < ApplicationController
 
       respond_to do |format|
         format.html {redirect_to root_path}
-        format.js {render :movie_create}
+        #format.js {render :movie_create}
+        format.json {render json: @movie, :status => :created}
       end
       
     else
@@ -30,7 +31,8 @@ class MoviesController < ApplicationController
 
       respond_to do |format|
         format.html {render :index}
-        format.js {render :index}
+        #format.js {render :index}
+        format.json {render nothing: true, status: 400 }
       end
     end
   end

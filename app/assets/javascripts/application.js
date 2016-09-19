@@ -20,6 +20,7 @@ $(document).ready(function() {
     populate(event);
   }, "json")
   //submitNewMovie();
+  MovieModule.formListener();
 });
 
 var populate = function(event) {
