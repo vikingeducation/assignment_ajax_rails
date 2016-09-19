@@ -14,35 +14,33 @@ var movies = {
   },
 
   createMovieRow: function(movie, table) {
-    var $newRow = $("<tr>")
-    var $title = $("<td>").text(movie.title)
-    var $releaseDate = $("<td>").text(movie.release_date)
-    $newRow.append($title)
-    $newRow.append($releaseDate)
-    table.append($newRow)
+    var $newRow = $("<tr>");
+    var $title = $("<td>").text(movie.title);
+    var $releaseDate = $("<td>").text(movie.release_date);
+    $newRow.append($title);
+    $newRow.append($releaseDate);
+    table.prepend($newRow);
   },
 
 
   getAllMovies: function() {
-    $.ajax({ url: "/movies.json", success: movies.populateMovieTable })
+    $.ajax({ url: "/movies.json", success: movies.populateMovieTable });
   },
 
   createNewMovie: function() {
     $("form[data-ajaxremote='true']").submit( function( event ){
-
       event.preventDefault();
-
       var $form = $( event.target );
       var formData = $form.serializeArray();
       $('input[type="text"]').val('');
-
       $.ajax({
         url: $form.attr("action"),
         method: "POST",
         data: formData,
         dataType: "json",
         success: movies.UpdateTableWithMovie
-      })
+      });
+      return false;
     });
   },
 
@@ -50,9 +48,11 @@ var movies = {
     var $table = $("#movie-table");
     movies.createMovieRow(response, $table);
   }
-}
+};
 
 $(document).ready(function() {
-  movies.getAllMovies();
-  movies.createNewMovie();
-})
+  if ($('body').data('controller') === 'movies') {
+    movies.getAllMovies();
+    movies.createNewMovie();
+  }
+});
