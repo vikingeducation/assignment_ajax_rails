@@ -5,9 +5,11 @@
   <%= content_tag :td, review.review_text %>
   <%= content_tag :td, review.review_date %>
   <%=
-    link = link_to 'delete', review_path(review),
-                          data: { review_destroy: review.id,
-                                  review_parent_id: review.movie_id }
+    link = link_to 'delete',
+                    review,
+                    method: :delete,
+                    data: { confirm: "Are you sure?" }
+                    # data: { review_destroy: review.id }
     content_tag :td, link
   %>
 </tr>
