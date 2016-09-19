@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AssignmentRailsApi</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div id = "flash-messages">
+      <%= render partial: "shared/flash" %>
+    </div>
+
+    <div id="<%= controller_name + '-' + action_name%>">
+      <%= yield %>
+    </div>
+  </body>
+</html>

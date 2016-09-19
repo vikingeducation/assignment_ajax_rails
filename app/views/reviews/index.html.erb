@@ -1,0 +1,39 @@
+<h2>Create a Review</h2>
+<%= form_for @review, remote: true do |f| %>
+  <%= f.label :reviwer_name, "Reviewer Name" %>
+  <%= f.text_field :reviwer_name, id: "name" %><br>
+
+  <%= f.label :title %>
+  <%= f.text_field :title, id: "title" %><br>
+
+  <%= f.label :review_text %>
+  <%= f.text_field :review_text, id: "text" %><br>
+
+  <%= f.label :movie_id, "Movie" %>
+  <%= f.collection_select(:movie_id,
+                          Movie.all,
+                          :id,
+                          :title,
+                          {},
+                          {id: "movie_id"}
+                          ) %><br>
+  <%= f.submit %>
+<% end %>
+
+
+<h2>All Reviews</h2>
+<table id="reviews">
+  <tr id="review-header">
+    <th>Movie Reviewed</th>
+    <th>Reviewer</th>
+    <th>Title</th>
+    <th>Review Text</th>
+    <th>Review Date</th>
+    <th>Delete</th>
+  </tr>
+
+  <%= render @reviews %>
+
+</table>
+
+<%# will_paginate @reviews %>
