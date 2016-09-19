@@ -1,5 +1,5 @@
 <h2>Create a Review</h2>
-<%= form_for @review do |f| %>
+<%= form_for @review, remote: true do |f| %>
   <%= f.label :reviwer_name, "Reviewer Name" %>
   <%= f.text_field :reviwer_name, id: "name" %><br>
 
@@ -22,8 +22,8 @@
 
 
 <h2>All Reviews</h2>
-<table id="reviews">
-  <tr>
+<table>
+  <tr id="review-header">
     <th>Movie Reviewed</th>
     <th>Reviewer</th>
     <th>Title</th>

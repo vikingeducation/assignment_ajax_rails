@@ -1,0 +1,5 @@
+$("#review-header").after("<%= j(render @review) %>");
+$("#name").val("");
+$("#title").val("");
+$("#text").val("");
+$("#movie_id").find("option:first").attr("selected", "selected");

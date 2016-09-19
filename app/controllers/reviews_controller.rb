@@ -6,12 +6,25 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
+    @review.review_date = Date.new(2016,9,19)
     if @review.save
-      redirect_to reviews_path
+      respond_to do |format|
+        format.html{redirect_to reviews_path}
+        format.js{}
+      end
     else
       render reviews_path
     end
 
+  end
+
+  def destroy
+    @review = Review.find(params[:id])
+    @review.destroy
+    respond_to do |format|
+        format.html{redirect_to reviews_path}
+        format.js{}
+      end
   end
 
   private
