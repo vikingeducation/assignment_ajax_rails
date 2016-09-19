@@ -6,18 +6,34 @@ var movies = {
 
   populateMovieTable: function(response) {
     console.log(response);
-    var $movieTable = $("#movie-table");
+    var $movieTableBody = $("#movie-table tbody");
     var $reviewTable = $('#review-table');
+    var count = 0;
 
     var responseMovies = response[0];
     var reviews = response[1];
+
     for(var i in responseMovies) {
-      movies.createMovieRow(responseMovies[i], $movieTable);
+      movies.createMovieRow(responseMovies[i], $movieTableBody);
     }
 
-    for(var j in reviews) {
-      movies.createReviewRow(reviews[j], $reviewTable, responseMovies);
+    for (var i = count; count <= i+10; count++) {
+      movies.createReviewRow(reviews[count], $reviewTable, responseMovies);
     }
+
+    $(window).scroll(function(){
+      if(count <= reviews.length - 1) {
+        if  ($(window).scrollTop() == $(document).height() - $(window).height()){
+          console.log('Hi guys!')
+          for (var i = count; count <= i+10; count++) {
+            if (count > reviews.length - 1) {
+              break;
+            }
+            movies.createReviewRow(reviews[count], $reviewTable, responseMovies);
+          }
+        }
+      }
+    });
   },
 
   createReviewRow: function(review, table, responseMovies) {
@@ -29,7 +45,7 @@ var movies = {
     var $text = $("<td>").text(review.review_text);
     var $date = $("<td>").text(review.review_date);
     $newRow.append($title, $name, $reviewTitle, $text, $date);
-    table.prepend($newRow);
+    table.append($newRow);
   },
 
   findMovieTitle: function(review, rMovies) {

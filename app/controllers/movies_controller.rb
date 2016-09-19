@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
-    @reviews = Review.all.includes(:movie)
+    @reviews = Review.all
     @data = [@movies, @reviews]
 
     respond_to do |format|
