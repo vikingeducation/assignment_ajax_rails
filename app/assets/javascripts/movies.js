@@ -12,7 +12,7 @@ var MoviesView = (function (AJAX) {
 
   var _cacheDOM = function() {
     _$movieTable = $('[data-movies-table]');
-    console.log("DOM element: " + _$movieTable);
+    _$reviewsTable = $('[data-reviews-table]');
     AJAX.movies.getMovies(_fillMoviesTable);
   };
 
@@ -24,6 +24,23 @@ var MoviesView = (function (AJAX) {
       newRow.append(newTitle);
       newRow.append(newReleaseDate);
       newRow.appendTo(_$movieTable);
+    });
+  };
+
+  var _fillReviewsTable = function(response) {
+    response.forEach(function(row) {
+      var newRow = $('<tr>');
+      var newMovieTitle = $('<td>').text(row.movie.title);
+      var newReviewerName = $('<td>').text(row.reviewer_name);
+      var newReviewTitle = $('<td>').text(row.title);
+      var newReviewText = $('<td>').text(row.text);
+      var newReviewDate = $('<td>').text(row.review_date);
+      newRow.append(newMovieTitle);
+      newRow.append(newReviewerName);
+      newRow.append(newReviewTitle);
+      newRow.append(newReviewText);
+      newRow.append(newReviewDate);
+      newRow.appendTo(_$reviewsTable);
     });
   };
 
