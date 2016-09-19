@@ -19,6 +19,7 @@ $(document).ready(function() {
   $.get("/movies", '', function(event) {
     populate(event);
   }, "json")
+  //submitNewMovie();
 });
 
 var populate = function(event) {
@@ -31,3 +32,11 @@ var populate = function(event) {
     $table.append($listing);
   }
 };
+
+var submitNewMovie = function() {
+  //$(".movie-submit-button").on("click", function(event) {
+    //Remove below when ready to test
+    //event.preventDefault();
+    console.log($("movie[title]").text());
+  })
+}

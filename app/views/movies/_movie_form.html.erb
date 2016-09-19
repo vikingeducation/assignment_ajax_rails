@@ -1,0 +1,5 @@
+<%= form_for @movie, remote: true  do |f| %>
+  <%= f.label :movie %>
+  <%= f.text_field :title %></br></br>
+  <%= f.submit "Create Movie", class: "movie-submit-button" %>
+<% end %></br></br>
