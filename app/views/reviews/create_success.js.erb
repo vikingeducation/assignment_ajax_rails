@@ -1,0 +1,11 @@
+var reviewPartial = ("<%= escape_javascript(render :partial => 'review', locals: { :review => @review }) %>");
+var newTimestamp = new Date();
+reviewPartial.attr("data-timestamp", newTimestamp);
+
+reviewPartial.css('display', 'none');
+
+$("[data-reviews-table] tr").first().after(reviewPartial);
+
+$("[data-timestamp=" + newTimestamp + "]").fadeIn("slow");
+
+document.getElementById("new_review").reset();
