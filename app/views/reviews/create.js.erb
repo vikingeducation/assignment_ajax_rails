@@ -1,5 +1,10 @@
-$("#review-header").after("<%= j(render @review) %>");
+var $newReview = $("<%= j(render @review) %>").attr("style", "display: none");
+$("#review-header").after($newReview);
+$newReview.fadeIn(2000);
 $("#name").val("");
 $("#title").val("");
 $("#text").val("");
 $("#movie_id").find("option:first").attr("selected", "selected");
+
+$("#flash-messages").empty()
+$("#flash-messages").append("<%= j(render 'shared/flash') %>");

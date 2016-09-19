@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   def index
-    @reviews = Review.all
+    @reviews = Review.paginate(page: params[:page], per_page: 10)
     @review = Review.new
   end
 
@@ -8,11 +8,13 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.review_date = Date.new(2016,9,19)
     if @review.save
+      flash[:success] = "Review added"
       respond_to do |format|
         format.html{redirect_to reviews_path}
         format.js{}
       end
     else
+      flash[:error] = "Review added"
       render reviews_path
     end
 
@@ -21,6 +23,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
+    flash[:success] = "Review deleted"
     respond_to do |format|
         format.html{redirect_to reviews_path}
         format.js{}

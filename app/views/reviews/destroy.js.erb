@@ -1,1 +1,4 @@
 $("[data-id = <%= @review.id %>]").remove();
+
+$("#flash-messages").empty();
+$("#flash-messages").append("<%= j(render 'shared/flash') %>");
