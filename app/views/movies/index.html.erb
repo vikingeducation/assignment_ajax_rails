@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <h1>Movies!!</h1>
+    </div>
+    <%= form_for @movie do |movie| %>
+  
+      <%= movie.label :title %>:
+      <%= movie.text_field :title, id:"new-form-text" %><br />
+
+
+      <%= movie.submit id:"movie-submit", value:"Submit Movie", class: "btn btn-primary"%>
+  
+    <% end %>
+    
+    <div class="col-sm-4 col-sm-offset-2">
+      <table id="movies-table" class="table">
+         <thead> 
+          <tr id="header"> 
+            <th> 
+              Title
+            </th>
+            <th>
+              Release Date
+            </th>
+
+
+          </tr>
+        </thead>
+        
+        <tbody>
+          
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
