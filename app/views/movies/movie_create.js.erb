@@ -1,0 +1,17 @@
+var listing = (function() {
+  var movieListing = "<%= j( render partial: "movie", locals: { movie: @movie } ) %>";
+  var $movieListing = $(movieListing);
+  var getListing = function() {
+    return $movieListing;
+  };
+
+  return {
+    getListing: getListing
+  }
+
+})();
+
+var $table = $('.movies');
+$(".notice").html("<%= j(render partial: 'shared/flash') %>");
+<% flash.clear %>
+$table.append(listing.getListing());
