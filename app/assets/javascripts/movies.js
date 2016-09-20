@@ -34,6 +34,8 @@ JS.movies = (function() {
   };
 
   var populateRow = function(response) {
+      var $movie = $('li div');
+      $movie.empty();
     $.each(response, function(index, el) {
       var $movieRow = $('<tr>');
       var $td2 = $('<td>').text(el.title);
@@ -42,7 +44,7 @@ JS.movies = (function() {
       $movieRow.append($td3);
       var $td4 = $('<td>').text(el.review_text);
       $movieRow.append($td4);
-      $movie = $('[data-id="' + el.movie_id + '"]')
+      $movie = $('[data-id="' + el.movie_id + '"] div')
       $movie.append($movieRow);
     });
   };
@@ -50,6 +52,8 @@ JS.movies = (function() {
   var populateTable = function(response) {
     $.each(response, function(index, el) {
       var $movieListing = $('<li>').text(el.title).attr('data-id', el.id);
+      var $movieReviews = $("<div>")
+      $movieListing.append($movieReviews);
       $('ul').append($movieListing);
     });
   };
@@ -97,7 +101,7 @@ JS.movies = (function() {
       // if you're at the bottom of the page
       if  ($(window).scrollTop() == $(document).height() - $(window).height()){
         ajaxMovies("/?page="+counter);
-        // ajaxReviews();
+        ajaxReviews();
         counter++;
       }
     });
