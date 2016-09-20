@@ -1,0 +1,30 @@
+<h1>Reviews</h1>
+
+<%= form_for @review, remote: true do |f| %>
+  <%= f.text_field :title %>
+  <%= f.text_field :reviewer_name %>
+  <%= f.text_field :review_text %>
+  <%= f.collection_select(:movie_id, Movie.all, :id, :title) %>
+  <%= f.submit %>
+<% end %>
+<br>
+<table>
+  <tr data-id="table-labels">
+    <th>
+      Movie
+    </th>
+    <th>
+      Title
+    </th>
+    <th>
+      Reviewer
+    </th>
+    <th>
+      Review
+    </th>
+    <th>
+      Date
+    </th>
+  </tr>
+<%= render @reviews %>
+</table>

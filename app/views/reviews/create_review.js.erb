@@ -1,0 +1,8 @@
+
+console.log("js request");
+var review = "<%= j(render partial: 'review', locals: { review: @review }) %>"
+var $review = $(review);
+var $table = JS.reviews.findTable();
+$table.after($review);
+$review.hide();
+$review.show("slow");
