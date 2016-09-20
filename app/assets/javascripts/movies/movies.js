@@ -4,7 +4,6 @@ APP.Movie = (function($) {
   var stub = {};
 
   var populateMovies = function(json) {
-    console.log(json);
     for (var i = 0; i < json.length; i++) {
       $newRow = $('<tr></tr');
       $title = $("<td>" + json[i]["title"] + "</td>");

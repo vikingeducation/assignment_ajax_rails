@@ -3,8 +3,12 @@ require 'pry'
 class ReviewsController < ApplicationController
 
   def index
-    @reviews = Review.all
+    @reviews = Review.paginate(page: params[:page] || 1)
     @review = Review.new
+    respond_to do |format|
+      format.json { render :json => @reviews, :status => 201}
+      format.html {  }
+    end
   end
 
   def destroy
