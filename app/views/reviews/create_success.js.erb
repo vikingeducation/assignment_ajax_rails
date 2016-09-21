@@ -1,0 +1,11 @@
+
+var reviewRow = "<%= j(render partial: "review", locals: {review: @review}) %>"
+
+var $reviewRow = $(reviewRow);
+
+
+var $table = reviews.getTable();
+
+$table.prepend($reviewRow); 
+
+$("form").children().val("");
