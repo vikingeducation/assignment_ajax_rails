@@ -123,6 +123,10 @@ var movies = {
 }//end movie object
 
 $(document).ready(function(){
+  if( $("body").data("controller") === "movies"){
+    movies.init();
+
+    
+  }
   
-  movies.init();
 })
