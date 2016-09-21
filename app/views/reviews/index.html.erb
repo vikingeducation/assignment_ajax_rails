@@ -1,0 +1,43 @@
+<%= form_for @review, remote: true, id: "review-form" do |f| %>
+  <%= f.label :reviewer_name %>
+  <%= f.text_field :reviewer_name %><br>
+  
+  <%= f.label :title %>
+  <%= f.text_field :title %><br>
+
+  <%= f.label :review_text %>
+  <%= f.text_area :review_text %><br>
+
+  <%= f.collection_select :movie_id, Movie.all, :id, :title %>
+
+
+  <%= f.submit %>
+
+<% end %>
+
+<br>
+<br>
+<br>
+
+<table id="review-table">
+  <thead>
+    <tr>  
+      <th>Reviews</th>
+    </tr>
+  </thead>
+  
+  <tbody id="review-body">
+    <% @reviews.each do |review| %>
+      <%= render partial: "review", locals: { review: review } %>
+    <% end %>
+  </tbody>
+
+  
+</table>
+
+
+<form id="review-form">
+  <input name="review-name" id="review-name" type="text">
+  <button type="submit" id="review-btn">Create</button>
+
+</form>
