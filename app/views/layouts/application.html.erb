@@ -8,7 +8,10 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body data-controller="<%= controller_name %>">
+    <div id = "flash-messages">
+      <%= render "shared/flash" %>
+    </div>
     <%= yield %>
   </body>
 </html>

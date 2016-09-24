@@ -1,0 +1,9 @@
+var reviewRow = "<%= j( render 'review', review: @review ) %>"
+var $reviewRow = $( reviewRow );
+
+var $reviewTable = $(".review_list");
+
+$reviewTable.prepend($reviewRow);
+
+$('#flash-messages').html("<%= j(render 'shared/flash') %>").slideDown();
+<%= flash.clear %>
