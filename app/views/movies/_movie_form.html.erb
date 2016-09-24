@@ -1,0 +1,5 @@
+<%= form_for movie, data: { ajaxremote: true } do |f| %>
+  <%= f.label :title, "Movie Name:" %>
+  <%= f.text_field :title %>
+  <%= f.submit "Submit" %>
+<% end %>

@@ -1,0 +1,18 @@
+<header>
+  <h1>Smelly Potatoes Movies</h1>
+</header>
+
+<main>
+  <div class="new_film">
+    <h3>Create New Film</h3>
+    <%= render "movie_form", movie: Movie.new %>
+  </div>
+  <h3>All movies</h3>
+  <table>
+    <thead>
+      <th>Title</th>
+      <th>Release Date</th>
+    </thead>
+    <%= render "movie_list" %>
+  </table>
+</main>

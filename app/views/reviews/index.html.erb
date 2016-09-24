@@ -1,0 +1,24 @@
+<header>
+  <h1>Smelly Potatoes Reviews</h1>
+</header>
+
+<main>
+  <div class="new_film">
+    <h3>Create New Review</h3>
+    <%= render "review_form", review: Review.new %>
+  </div>
+  <h3>All reviews</h3>
+  <table>
+    <thead>
+      <th>Movie reviewed</th>
+      <th>Reviewer</th>
+      <th>Title</th>
+      <th>Review Text</th>
+      <th>Review Date</th>
+      <th>Delete</th>
+    </thead>
+    <tbody class="review_list">
+      <%= render @reviews %>
+    </tbody>
+  </table>
+</main>
