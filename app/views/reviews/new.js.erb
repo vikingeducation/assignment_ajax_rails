@@ -1,0 +1,7 @@
+
+(function(){
+    var movieHtml = "<%= j(render 'review', review: @review) %>"
+    var $movieHtml = $(movieHtml).hide();
+    $movieHtml.prependTo('tbody').fadeIn(4000);
+    $('form').find('input[type=text], select').val('');
+})();
