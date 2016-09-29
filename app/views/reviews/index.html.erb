@@ -1,0 +1,28 @@
+<h1>The reviews page!</h1>
+
+<h2>Create a review</h2>
+<%= form_for @review, remote: true do |m| %>
+<%= m.label :reviewer_name %>:<br>
+<%= m.text_field :reviewer_name %><br>
+<%= m.label :title %>:<br>
+<%= m.text_field :title %><br>
+<%= m.label :review_text %>:<br>
+<%= m.text_field :review_text %><br>
+<%= m.label :movie_id, "Movie:" %><br>
+<%= m.collection_select :movie_id, @movies, :id, :title %>
+<br><br>
+<%= m.submit "Create Review" %>
+<%end%>
+
+
+<h2>All Reviews</h2>
+
+<table>
+  <thead>
+<tr><th>Movie Reviewed</th><th>Reviewer</th><th>Title</th><th>Review Text</th><th>Review Date</th><th>Delete</th></tr></thead>
+<tbody>
+<%= render @reviews %>
+</tbody>
+
+
+</table>
