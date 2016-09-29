@@ -1,0 +1,8 @@
+var reviewRow = "<%= j( render partial: "review", locals: { review: @review } ) %>"
+var $reviewRow = $( reviewRow );
+var $table = $('table');
+$reviewRow.prependTo($table);
+$('#review_reviewer_name').val("");
+$('#review_title').val("");
+$('#review_review_text').val("");
+$('#review_movie_id').val("");
