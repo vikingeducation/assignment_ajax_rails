@@ -1,0 +1,18 @@
+<h1>The movies page!</h1>
+
+<h2>Create a Movie</h2>
+<%= form_for @movie, data: { ajaxremote: true } do |m| %>
+<%= m.label :title %>:
+<%= m.text_field :title %>
+<br><br>
+<%= m.submit "Create Movie" %>
+<%end%>
+
+
+<h2>All Movies</h2>
+
+<table>
+<tr><th>Title</th><th>Release Date</th></tr>
+
+
+</table>
