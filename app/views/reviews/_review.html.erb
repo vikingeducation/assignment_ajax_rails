@@ -1,0 +1,9 @@
+<tr id="review-<%= review.id %>">
+  <td><%= link_to(review.title, review_path(review)) %></td>
+  <td><%= link_to(review.movie.title, movie_path(review.movie)) %></td>
+  <td><%= review.body.length > 80 ? review.body[0..80] + '...' : review.body %></td>
+  <td><%= review.date %></td>
+  <td><%= review.reviewer %></td>
+  <td><%= link_to('&times;'.html_safe + ' Delete', review_path(review), :method => :delete, :class => 'btn btn-danger', :data => { :confirm => 'Are you sure?' }, :remote => true) %></td>
+</tr>
+

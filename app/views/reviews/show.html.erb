@@ -1,0 +1,47 @@
+<header class="page-header clearfix">
+  <h1 class="pull-left">
+    <%= link_to(@review.movie.title, movie_path(@review.movie)) %>
+    Review
+    <small>
+      <%= @review.title %>
+    </small>
+  </h1>
+  <%= link_to('&times;'.html_safe + ' Delete', review_path(@review), :class => 'pull-right btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }) %>
+</header>
+
+<div class="row">
+  <div class="col-xs-6 center-block" style="float: none;">
+
+    <table class="table">
+      <tbody>
+          <tr>
+            <td>Movie: </td>
+            <td><%= link_to(@review.movie.title, movie_path(@review.movie)) %></td>
+          </tr>
+          <tr>
+            <td>Review Title: </td>
+            <td><%= @review.title %></td>
+          </tr>
+          <tr>
+            <td>Review Date: </td>
+            <td><%= @review.date %></td>
+          </tr>
+          <tr>
+            <td>Reviewer: </td>
+            <td><%= @review.reviewer %></td>
+          </tr>
+      </tbody>
+    </table>
+
+    <blockquote>
+      <p>
+        <%= @review.body %>
+      </p>
+      <footer>
+        <%= @review.reviewer %>
+      </footer>
+    </blockquote>
+
+  </div>
+</div>
+

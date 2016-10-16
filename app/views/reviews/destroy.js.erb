@@ -1,0 +1,10 @@
+console.log('Reviews destroy.js.erb - BEGIN');
+
+var $flash = $('<%= j(render :partial => "shared/flash") %>');
+$('#flash').html($flash);
+
+$('#review-<%= @review.id %>').remove();
+
+
+console.log('Reviews destroy.js.erb - BEGIN');
+

@@ -1,0 +1,12 @@
+<% if object.errors.present? %>
+  <div class="alert alert-danger">
+    <%
+    field ||= nil
+    error_messages_for(object, field) do |error|
+    %>
+      <%= error %>
+      <br/>
+    <% end %>
+  </div>
+<% end %>
+

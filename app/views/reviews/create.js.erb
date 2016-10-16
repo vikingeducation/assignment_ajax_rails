@@ -1,0 +1,15 @@
+console.log('Reviews index.js.erb - BEGIN');
+
+
+var $flash = $('<%= j(render :partial => "shared/flash") %>');
+$('#flash').html($flash);
+
+$("#new_review").bind("ajax:complete", function(event, xhr, status){
+  $('#new_review')[0].reset();
+});
+
+$('<%= j(render @review) %>').prependTo('#reviews');
+
+
+console.log('Reviews index.js.erb - END');
+

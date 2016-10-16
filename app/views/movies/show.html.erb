@@ -1,0 +1,39 @@
+<header class="page-header">
+  <h1>
+    Movie
+    <small>
+      <%= @movie.title %>
+    </small>
+  </h1>
+</header>
+
+<h2>Reviews</h2>
+
+
+<% if @movie.reviews.present? %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th><th>Reviewer</th><th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% @movie.reviews.each do |review| %>
+        <tr>
+          <td><%= link_to(review.title, review_path(review)) %></td>
+          <td><%= review.reviewer %></td>
+          <td><%= review.date %></td>
+        </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+
+<% else %>
+
+  <p class="text-danger">Not reviewed</p>
+
+<% end %>
+

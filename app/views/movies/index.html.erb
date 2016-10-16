@@ -1,0 +1,44 @@
+<header class="page-header">
+  <h1>Movies</h1>
+</header>
+
+<div class="well">
+  <%= render :partial => 'shared/errors', :locals => { :object => @movie } %>
+
+  <%= form_for(@movie) do |f| %>
+    <div class="form-group">
+      <%= f.label(:title) %>
+      <%= f.text_field(:title, :class => 'form-control') %>
+    </div>
+
+    <%= f.label(:date, 'Release Date') %>
+    <div class="row">
+
+      <%
+      date_wrapper_open = '<div class="col-xs-4"><div class="form-group">'.html_safe
+      date_wrapper_close = '</div></div>'.html_safe
+      %>
+      
+      <%= date_wrapper_open %>
+
+      <%= f.date_select(
+        :date,
+        {
+          :order => [:day, :month, :year],
+          :date_separator => "#{date_wrapper_close}#{date_wrapper_open}",
+          :start_year => Date.today.year,
+          :end_year => 150.years.ago.year
+        },
+        {:class => 'form-control'}
+      ) %>
+
+      <%= date_wrapper_close %>
+
+    </div>
+
+    <%= f.submit('Create Movie', :class => 'btn btn-primary') %>
+  <% end %>
+</div>
+
+<p id="movies" class="text-danger">No movies</p>
+
