@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -18,10 +17,9 @@ ActiveRecord::Schema.define(version: 20160104000514) do
     t.date     "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["date"], name: "index_movies_on_date"
+    t.index ["title"], name: "index_movies_on_title"
   end
-
-  add_index "movies", ["date"], name: "index_movies_on_date"
-  add_index "movies", ["title"], name: "index_movies_on_title"
 
   create_table "reviews", force: :cascade do |t|
     t.string   "title"
@@ -31,11 +29,10 @@ ActiveRecord::Schema.define(version: 20160104000514) do
     t.integer  "movie_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["date"], name: "index_reviews_on_date"
+    t.index ["movie_id"], name: "index_reviews_on_movie_id"
+    t.index ["reviewer"], name: "index_reviews_on_reviewer"
+    t.index ["title"], name: "index_reviews_on_title"
   end
-
-  add_index "reviews", ["date"], name: "index_reviews_on_date"
-  add_index "reviews", ["movie_id"], name: "index_reviews_on_movie_id"
-  add_index "reviews", ["reviewer"], name: "index_reviews_on_reviewer"
-  add_index "reviews", ["title"], name: "index_reviews_on_title"
 
 end
