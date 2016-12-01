@@ -1,6 +1,7 @@
 $(document).ready( function() {
   if( $("#movies-index").length ) {
     MyModule.init()
+    MyModule.createMovieListener();
   }
 });
 
@@ -27,8 +28,40 @@ var MyModule = (function() {
       }
     });
   }
+
+  var createMovieListener = function() {
+    $("#movie-form").submit(function(e){
+      e.preventDefault();
+      var postData = $(this).serializeArray();
+      postData = ({title: postData[0].value, release_date: (new Date) });
+      postData = JSON.stringify(postData);
+      $.ajax( {
+        url: "http://localhost:3000/movies",
+        data: postData,
+        type: "POST",
+        contentType: "application/json",
+        dataType: "json",
+
+        success: function( movie) {
+          $("ul").append("<li>"+ movie.title +"</li>");
+        },
+
+        error: function( xhr, status, errorThrown ) {
+          console.log( "Error: " + xhr.responseText );
+          console.log( "Status: " + status );
+          console.dir( xhr );
+        },
+
+        complete: function( xhr, status ) {
+          console.log( "The request is complete!" );
+        }
+      })
+    });
+  }
+
   return {
     init: init,
+    createMovieListener: createMovieListener,
   }
 })();
 
