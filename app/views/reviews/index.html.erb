@@ -1,0 +1,20 @@
+<h1>Smelly Potatoes Reviews</h1>
+<%= render partial: 'form', locals: { review: @review, movies: @movies } %>
+<h3>All Reviews</h3>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Movie</th>
+    <th>Reviewer Name</th>
+    <th>Title</th>
+    <th>Review Text</th>
+    <th>Review Date</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @reviews.each do |review| %>
+    <%= render partial: 'review', locals: { review: review } %>
+  <% end %>
+  </tbody>
+</table>
