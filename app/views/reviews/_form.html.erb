@@ -1,4 +1,4 @@
-<%= form_for review, html: {:id => "review-form"} do |m| %>
+<%= form_for review, html: {:id => "review-form"}, :remote => true do |m| %>
   <%= m.label :Reviewer %>:
   <%= m.text_field :reviewer_name %><br>
   <%= m.label :title %>:

@@ -1,0 +1,3 @@
+var reviewRow = "<%= j( render partial: 'review', locals: { review: @review } ) %>"
+$('tbody').prepend(reviewRow);
+$('#review-form').find("input[type=text], textarea").val("");

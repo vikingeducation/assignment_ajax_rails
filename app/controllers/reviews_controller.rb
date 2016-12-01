@@ -9,11 +9,18 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.review_date = Date.today
     if @review.save
-
+      flash[:success] = "Review successfully created!"
+      respond_to do |format|
+        format.html { redirect_to reviews_path }
+        format.js { render :review_create }
+      end
     else
       flash.now[:error] = "Review could not be created"
+      respond_to do |format|
+        format.html { redirect_to reviews_path }
+        format.js { render :new }
+      end
     end
-    redirect_to reviews_path
   end
 
   def destroy
@@ -23,7 +30,10 @@ class ReviewsController < ApplicationController
     else
       flash[:danger] = "Unable to delete this review post!"
     end
-    redirect_to reviews_path
+    respond_to do |format|
+      format.html { redirect_to reviews_path }
+      format.js { render :review_delete }
+    end
   end
 
   private
