@@ -1,0 +1,11 @@
+<h1>Smelly Potatoes</h1>
+
+<h3>All Movies</h3>
+<%= form_for @movie, html: {:id => "movie-form"} do |m| %>
+  <%= m.label :title %>:
+  <%= m.text_field :title %>
+  <br><br>
+  <%= m.submit "Create Movie", id: "movie-form-button" %>
+<% end %>
+<ul>
+</ul>

@@ -1,0 +1,11 @@
+<%= form_for review, html: {:id => "review-form"}, :remote => true do |m| %>
+  <%= m.label :Reviewer %>:
+  <%= m.text_field :reviewer_name %><br>
+  <%= m.label :title %>:
+  <%= m.text_field :title %><br>
+  <%= m.label :text %>:
+  <%= m.text_field :review_text %><br>
+  <%= m.label :Movie %>
+  <%= m.collection_select :movie_id, movies, :id, :title %><br>
+  <%= m.submit "Create review", id: "review-form-button" %>
+<% end %>
