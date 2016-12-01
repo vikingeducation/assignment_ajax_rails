@@ -1,11 +1,11 @@
 $(document).ready( function() {
   if( $("#movies-index").length ) {
-    MyModule.init()
-    MyModule.createMovieListener();
+    MovieModule.init()
+    MovieModule.createMovieListener();
   }
 });
 
-var MyModule = (function() {
+var MovieModule = (function() {
   var init = function(){
     $.ajax({
       url: "http://localhost:3000/movies",
@@ -33,7 +33,7 @@ var MyModule = (function() {
     $("#movie-form").submit(function(e){
       e.preventDefault();
       var postData = $(this).serializeArray();
-      postData = ({title: postData[0].value, release_date: (new Date) });
+      postData = ({title: postData[2].value, release_date: (new Date) });
       postData = JSON.stringify(postData);
       $.ajax( {
         url: "http://localhost:3000/movies",
@@ -44,6 +44,7 @@ var MyModule = (function() {
 
         success: function( movie) {
           $("ul").append("<li>"+ movie.title +"</li>");
+          $("#movie-form").bind('submit')
         },
 
         error: function( xhr, status, errorThrown ) {
@@ -53,6 +54,7 @@ var MyModule = (function() {
         },
 
         complete: function( xhr, status ) {
+          $("#movie-form-button").removeAttr('disabled');
           console.log( "The request is complete!" );
         }
       })

@@ -12,11 +12,12 @@ class MoviesController < ApplicationController
     @movie = Movie.new(movie_params)
     respond_to do |format|
       if @movie.save
-        format.html { }
+        format.html { redirect_to movies_path }
         format.json { render json: @movie, status: :created }
       else
-        format.html { }
-        format.json { }
+        flash.now[:error] = "Movie could not be created"
+        format.html { redirect_to movies_path }
+        format.json { render nothing: true, status: 400 }
       end
     end
   end
