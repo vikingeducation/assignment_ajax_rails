@@ -1,0 +1,25 @@
+// Place all the styles related to the movies controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table, h3 {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+
+
+}
+
+body{
+  margin-left: 140px;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
