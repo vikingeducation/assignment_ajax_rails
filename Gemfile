@@ -34,6 +34,8 @@ group :development, :test do
   gem 'byebug', platform: :mri
 end
 
+gem 'annotate'
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
@@ -43,6 +45,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+gem 'pry'
 
 group :development do
   gem "better_errors"

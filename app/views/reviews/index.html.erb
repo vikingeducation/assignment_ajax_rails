@@ -1,5 +1,9 @@
-<h3>All Reviews</h3>
+<h4>Create Review</h4>
 
+<%= render "review_form", review: Review.new %>
+
+
+<h3>All Reviews</h3>
 
 
 <table style="width:70%" >
@@ -9,14 +13,11 @@
       <th>Text</th>
       <th>Review Date</th>
       <th>Movie</th>
+      <th>Delete</th>
     </tr>
-    <% @reviews.each do |review| %>
-      <tr>
-        <td><%= review.reviewer_name %></td>
-      </tr>
+    
+    <div id="movies">
+      <%= render @reviews %>
+    </div>
 
-      <tr>
-        <td><%= review.title %></td>
-      </tr>
-    <% end %>
 </table>
