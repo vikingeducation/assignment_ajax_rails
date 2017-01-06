@@ -4,21 +4,28 @@ class ReviewsController < ApplicationController
     @reviews = Review.order(created_at: "DESC")
   end
 
+
   def create
     @review = Review.new(movie_params)
 
-    respond_to do |format|
-      if @review.save
-          @review.review_date = @review.created_at
-          @review.save
-        format.html { redirect_to reviews_path, notice: 'Review was successfully created.' }
-        format.js { render :create }
-      else
+    if @review.save
+      flash[:success] = "Post successfully created!"
+
+      @review.review_date = @review.created_at
+      @review.save
+
+      respond_to do |format|
+        format.html { redirect_to reviews_path }
+        format.js { render :create_success }
+      end
+    else
+      flash.now[:error] = "Post could not be created"
+
+      respond_to do |format|
         format.html { render :new }
-        format.js { head :none }
+        format.js { render :new}
       end
     end
-
   end
 
 
