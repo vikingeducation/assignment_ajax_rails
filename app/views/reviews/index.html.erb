@@ -1,0 +1,23 @@
+<h4>Create Review</h4>
+
+<%= render "review_form", review: Review.new %>
+
+
+<h3>All Reviews</h3>
+
+
+<table style="width:70%" >
+    <tr>
+      <th>Reviewer Name</th>
+      <th>Title</th>
+      <th>Text</th>
+      <th>Review Date</th>
+      <th>Movie</th>
+      <th>Delete</th>
+    </tr>
+
+    <div id="movies">
+      <%= render @reviews %>
+    </div>
+
+</table>
