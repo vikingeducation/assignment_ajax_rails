@@ -1,0 +1,1 @@
+json.array! @movies, :title, :release_date

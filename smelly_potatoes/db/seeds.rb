@@ -21,13 +21,13 @@ NUM_REVIEWS_PER_MOVIE = 3
 puts "Creating movies"
 
 NUM_MOVIES.times do
-  movie = Movie.new(title: Faker::Superhero.name, release_date: Faker::Date.between(2.years.ago, Date.today))
+  movie = Movie.create(title: Faker::Superhero.name, release_date: Faker::Date.between(2.years.ago, Date.today))
 
 
   puts "Creating reviews for #{movie.title}"
 
   NUM_REVIEWS_PER_MOVIE.times do
-    movie.reviews << Review.new(
+    movie.reviews << Review.create(
                                 reviewer_name: Faker::Name.name,
                                 title: Faker::Team.name,
                                 review_text: Faker::Lorem.paragraph,
