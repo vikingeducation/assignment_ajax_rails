@@ -9,6 +9,9 @@
   </head>
 
   <body data-controller="<%= controller_name %>">
+    <div id="flash-messages">
+      <%= render partial: "shared/flash" %>
+    </div>
     <%= yield %>
   </body>
 </html>
