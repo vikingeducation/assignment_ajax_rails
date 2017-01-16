@@ -20,8 +20,16 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def destroy
+    @review = Review.find(params[:id])
+    @review.destroy!
+    respond_to do |format|
+      format.html { redirect_to reviews_path }
+    end
+  end
+
   private
     def review_params
-      params.require(:review).permit(:reviewer_name, :title, :review_text, :movie_id)
+      params.require(:review).permit(:reviewer_name, :title, :review_text, :movie_id, :review_date)
     end
 end
