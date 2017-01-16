@@ -1,13 +1,12 @@
 <h1> Smelly Potatoes Movies!!!! </h1>
 
-<%= form_for Movie.new do |f| %>
+<%= form_for Movie.new, { html: { id: "new-movie" } } do |f| %>
   <%= f.text_field :title %>
-  <%= f.submit data-id: "new-movie"%>
+  <%= f.submit %>
 <% end %>
 
 <br>
 
 <table data-id="movie-table">
   <tr><th>Title</th><th>Release Date!</th></tr>
-
 </table>

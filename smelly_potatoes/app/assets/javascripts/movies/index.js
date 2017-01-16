@@ -2,6 +2,17 @@ var APP = APP || {};
 
 APP.Movies = (function() {
 
+  var init = function() {
+    getMovies();
+    _addSubmitListener();   
+  };
+
+  var _addSubmitListener = function() {
+    $('#new-movie').on("submit", function(e) {
+      _submitMovie(e);
+    });
+  };
+
   var _displayMovies = function(data) {
 
     var $table = $('table').data('id', 'movie-table');
@@ -25,7 +36,6 @@ APP.Movies = (function() {
   };
 
   var _errorDisplayingMovies = function(data) {
-    console.log(data);
     var $table = $('table').data('id', 'movie-table');
     $table.text(data.statusText);
   };
@@ -46,34 +56,43 @@ APP.Movies = (function() {
 
   };
 
-  var onSumbit = function(event){
+  var _submitMovie = function(e) {
+    e.preventDefault();
+    var title = $('#movie_title').val();
+    var data = {};
+    data.title = title;
+    newMovie(data);
+  };
 
-  }
+  var _displayNewMovie = function() {
+    console.log(data);
+  };
 
   var newMovie = function(input){
-    var data =  JSON.stringify(input)
+    var data = JSON.stringify(input);
+ 
     $.ajax({
       url: '/movies',
       method: 'POST',
       contentType: 'application/json',
       success: function(data){
-        console.log("YAY MOVIE")
+        console.log("YAY MOVIE");
+        _displayNewMovie(data);
       },
       error: function(data){
-        console.log("Hubris comes before a dizzying fall")
+        console.log("Hubris comes before a dizzying fall");
       },
       data: data
-    })
+    });
   }
-
+ 
   return {
+    init: init,
     getMovies: getMovies,
-    newMovie: newMovie,
-    onSumbit: onSumbit
   }
 
 })($);
 
 $(document).ready(function(){
-  APP.Movies.getMovies();
+  APP.Movies.init();
 });
