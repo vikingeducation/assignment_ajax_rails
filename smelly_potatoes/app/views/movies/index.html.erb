@@ -1,5 +1,11 @@
 <h1> Smelly Potatoes Movies!!!! </h1>
 
+<%= form_for Movie.new do |f| %>
+  <%= f.text_field :title %>
+  <%= f.submit%>
+<% end %>
+
+<br>
 
 <table data-id="movie-table">
   <tr><th>Title</th><th>Release Date!</th></tr>
