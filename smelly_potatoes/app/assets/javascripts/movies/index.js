@@ -46,8 +46,30 @@ APP.Movies = (function() {
 
   };
 
+  var onSumbit = function(event){
+
+  }
+
+  var newMovie = function(input){
+    var data =  JSON.stringify(input)
+    $.ajax({
+      url: '/movies',
+      method: 'POST',
+      contentType: 'application/json',
+      success: function(data){
+        console.log("YAY MOVIE")
+      },
+      error: function(data){
+        console.log("Hubris comes before a dizzying fall")
+      },
+      data: data
+    })
+  }
+
   return {
-    getMovies: getMovies
+    getMovies: getMovies,
+    newMovie: newMovie,
+    onSumbit: onSumbit
   }
 
 })($);

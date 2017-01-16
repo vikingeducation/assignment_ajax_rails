@@ -12,12 +12,17 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(strong_params)
-    if @movie.save
-      flash[:alert] = "MADE A MOVIE"
-      redirect_to :back
-    else
-      flash.now[:alert] = "DID NOT MAKE A MOVIE"
-      render :index
+    @movie.release_date = Date.today
+    respond_to do |format|
+      if @movie.save
+        flash[:alert] = "MADE A MOVIE"
+        format.html {redirect_to :back}
+        format.js {render :index}
+      else
+        flash.now[:alert] = "DID NOT MAKE A MOVIE"
+        format.html { render :index }
+        format.js {head :none}
+      end
     end
   end
 
