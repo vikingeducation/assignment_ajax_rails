@@ -1,6 +1,6 @@
 <h1> Smelly Potatoes Reviews!!!! </h1>
 
-<%= form_for Review.new, { html: { id: "new-review" } } do |f| %>
+<%= form_for Review.new, remote: true do |f| %>
 
   <%= f.label :reviewer_name, "Reviewer" %>
   <%= f.text_field :reviewer_name %>
@@ -15,7 +15,7 @@
   <br>
 
   <%= f.label :movie, "Movie" %>
-  <%= f.collection_select :movie, @movies, :id, :title %>
+  <%= f.collection_select :movie_id, @movies, :id, :title %>
   <br>
 
   <%= f.button "Create Review!",  id: "review-button" %>
@@ -27,8 +27,8 @@
 
 <h2>All Reviews</h2>
 
-<table data-id="movie-table">
-  <tr>
+<table data-id="review-table">
+  <tr id="heading">
     <th>Movie Reviewed</th>
     <th>Reviewer</th>
     <th>Title</th>
@@ -36,6 +36,12 @@
     <th>Review Date</th>
     <th>Delete</th>
   </tr>
+
+
+  <% @reviews.each do |review| %>
+    <%= render partial: "shared/review", object: review %>
+
+  <% end %>
   
 </table>
 
