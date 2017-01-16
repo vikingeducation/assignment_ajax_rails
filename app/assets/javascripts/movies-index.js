@@ -9,7 +9,6 @@ MY_APP.movies.index = (function($) {
   var _movieRow = function(movieObj) {
     var $title = $('<td>').text(movieObj.title);
     var $releaseDate = $('<td>').text(movieObj.release_date);
-    console.log($title, $releaseDate);
     $('<tr>')
       .attr('data-id', movieObj.id)
       .append($title)
@@ -27,7 +26,6 @@ MY_APP.movies.index = (function($) {
     $.ajax({
       url: '/movies.json',
       success: function(data) {
-        console.log(data);
         _populateTable(data);
       }
     });

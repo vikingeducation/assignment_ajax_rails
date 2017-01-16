@@ -6,7 +6,7 @@ MY_APP.movies = {};
 MY_APP.movies.create = (function($) {
   var exports = {};
 
-  var attachMovieListener = function() {
+  exports.attachMovieListener = function() {
     _ajaxFormListener();
   };
 
@@ -15,10 +15,11 @@ MY_APP.movies.create = (function($) {
     // tradeoff between selecting an ID vs data attr
 
     // find the form
-    $("form[data-ajaxremote='true']").submit(function(e) {
+    $("form[data-ajaxremote='true']").on('submit', function(e) {
       e.preventDefault();
       var $el = $(e.target);
       var formData = $el.serializeArray();
+
 
       // submit the form via ajax
       $.ajax({
@@ -26,8 +27,8 @@ MY_APP.movies.create = (function($) {
         method: 'POST',
         data: formData,
         dataType: 'json',
+        error: function(xhr) {console.log(xhr); },
         success: function(data) {
-          console.log('success');
           _addMovieRowToTable(data);
         }
       });
@@ -36,8 +37,11 @@ MY_APP.movies.create = (function($) {
 
   // take the response, populate the table with new movie
   var _addMovieRowToTable = function(data) {
+    console.log(data);
     // TODO
   };
 
   return exports;
-})();
+})($);
+
+$(document).ready(MY_APP.movies.create.attachMovieListener);
