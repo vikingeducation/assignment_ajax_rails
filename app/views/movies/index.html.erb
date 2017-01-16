@@ -1,0 +1,17 @@
+<h1>Movies</h1>
+
+<table id="movie-table">
+  <thead>
+    <tr>
+      <th>Movie name</th>
+      <th>Release date</th>
+    </tr>
+  </thead>
+  <tbody id="movie-list"></tbody>
+</table>
+
+<%= form_for Movie.new, data: { ajaxremote: true }, id:'jquery-form' do |f| %>
+  <%= f.text_field :title %>
+  <%= f.date_field :release_date %>
+  <%= f.submit %>
+<% end %>
