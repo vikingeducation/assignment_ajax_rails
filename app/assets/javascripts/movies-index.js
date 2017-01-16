@@ -23,7 +23,6 @@ MY_APP.movies.index = (function($) {
   };
 
   exports.init = function() {
-    console.log("here");
     $.ajax({
       url: '/movies.json',
       success: function(data) {
@@ -35,8 +34,4 @@ MY_APP.movies.index = (function($) {
   return exports;
 })($);
 
-$(document).ready(function() {
-  if ( $("body").data("controller") === 'movies' ){
-    MY_APP.movies.index.init();
-  }
-});
+$(document).ready(MY_APP.movies.index.init);

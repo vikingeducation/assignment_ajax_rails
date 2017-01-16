@@ -47,10 +47,4 @@ MY_APP.movies.create = (function($) {
   return exports;
 })($);
 
-console.log(MY_APP.movies.create);
-$(document).ready(function() {
-  if ( $("body").data("controller") === 'movies' ){
-    debugger;
-    MY_APP.movies.create.attachMovieListener();
-  }
-});
+$('body').ready(MY_APP.movies.create.attachMovieListener);

@@ -12,4 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require movies-index
+//= require json-form
 //= require_tree .
