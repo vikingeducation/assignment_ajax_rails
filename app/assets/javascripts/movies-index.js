@@ -6,7 +6,7 @@ MY_APP.movies = {};
 MY_APP.movies.index = (function($) {
   var exports = {};
 
-  var _movieRow = function(movieObj) {
+  exports.movieRow = function(movieObj) {
     var $title = $('<td>').text(movieObj.title);
     var $releaseDate = $('<td>').text(movieObj.release_date);
     $('<tr>')
@@ -18,11 +18,12 @@ MY_APP.movies.index = (function($) {
 
   var _populateTable = function(data) {
     for (var i = 0; i < data.length; i++) {
-      _movieRow(data[i]);
+      exports.movieRow(data[i]);
     }
   };
 
   exports.init = function() {
+    console.log("here");
     $.ajax({
       url: '/movies.json',
       success: function(data) {
@@ -34,4 +35,8 @@ MY_APP.movies.index = (function($) {
   return exports;
 })($);
 
-$(document).ready(MY_APP.movies.index.init);
+$(document).ready(function() {
+  if ( $("body").data("controller") === 'movies' ){
+    MY_APP.movies.index.init();
+  }
+});

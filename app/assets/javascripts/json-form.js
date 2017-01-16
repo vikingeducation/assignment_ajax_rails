@@ -20,7 +20,6 @@ MY_APP.movies.create = (function($) {
       var $el = $(e.target);
       var formData = $el.serializeArray();
 
-
       // submit the form via ajax
       $.ajax({
         url: $el.attr('action'),
@@ -32,16 +31,26 @@ MY_APP.movies.create = (function($) {
           _addMovieRowToTable(data);
         }
       });
+
+      // reset the form, does not work
+      $el.find('input[type="text"]').val('');
+      $el.find('input[type="submit"]').prop('disabled', false);
     });
   };
 
   // take the response, populate the table with new movie
   var _addMovieRowToTable = function(data) {
-    console.log(data);
-    // TODO
+    // dependency injection makes this fail
+    MY_APP.movies.index.movieRow(data);
   };
 
   return exports;
 })($);
 
-$(document).ready(MY_APP.movies.create.attachMovieListener);
+console.log(MY_APP.movies.create);
+$(document).ready(function() {
+  if ( $("body").data("controller") === 'movies' ){
+    debugger;
+    MY_APP.movies.create.attachMovieListener();
+  }
+});
