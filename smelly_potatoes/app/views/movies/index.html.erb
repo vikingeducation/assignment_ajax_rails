@@ -2,7 +2,7 @@
 
 <%= form_for Movie.new, { html: { id: "new-movie" } } do |f| %>
   <%= f.text_field :title %>
-  <%= f.submit %>
+  <%= f.button "New Movie!",  id: "movie-button" %>
 <% end %>
 
 <br>

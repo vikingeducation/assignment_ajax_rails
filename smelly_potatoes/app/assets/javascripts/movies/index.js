@@ -9,6 +9,7 @@ APP.Movies = (function() {
 
   var _addSubmitListener = function() {
     $('#new-movie').on("submit", function(e) {
+    e.preventDefault();
       _submitMovie(e);
     });
   };
@@ -57,15 +58,12 @@ APP.Movies = (function() {
   };
 
   var _submitMovie = function(e) {
-    e.preventDefault();
+
     var title = $('#movie_title').val();
+    $('#movie_title').val("")
     var data = {};
     data.title = title;
     newMovie(data);
-  };
-
-  var _displayNewMovie = function() {
-    console.log(data);
   };
 
   var newMovie = function(input){
@@ -74,10 +72,11 @@ APP.Movies = (function() {
     $.ajax({
       url: '/movies',
       method: 'POST',
+      dataType: 'json',
       contentType: 'application/json',
       success: function(data){
         console.log("YAY MOVIE");
-        _displayNewMovie(data);
+        _displayMovies([data]);
       },
       error: function(data){
         console.log("Hubris comes before a dizzying fall");

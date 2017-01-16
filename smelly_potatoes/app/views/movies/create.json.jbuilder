@@ -1,0 +1,1 @@
+json.(@movie, :title, :release_date)
