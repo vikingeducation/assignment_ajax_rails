@@ -3,9 +3,10 @@ var APP = APP || {};
 APP.Movies = (function() {
 
   var init = function() {
-    getMovies();
-    _addSubmitListener();   
+    _getMovies();
+    _addSubmitListener();    
   };
+
 
   var _addSubmitListener = function() {
     $('#new-movie').on("submit", function(e) {
@@ -13,6 +14,7 @@ APP.Movies = (function() {
       _submitMovie(e);
     });
   };
+
 
   var _displayMovies = function(data) {
 
@@ -36,12 +38,14 @@ APP.Movies = (function() {
 
   };
 
+
   var _errorDisplayingMovies = function(data) {
     var $table = $('table').data('id', 'movie-table');
     $table.text(data.statusText);
   };
 
-  var getMovies = function() {
+
+  var _getMovies = function() {
 
     $.ajax({
         url: '/movies',
@@ -53,20 +57,21 @@ APP.Movies = (function() {
         error: function(data) {
           _errorDisplayingMovies(data);
         }
-      });
+    });
 
   };
 
-  var _submitMovie = function(e) {
 
+  var _submitMovie = function(e) {
     var title = $('#movie_title').val();
     $('#movie_title').val("")
     var data = {};
     data.title = title;
-    newMovie(data);
+    _newMovie(data);
   };
 
-  var newMovie = function(input){
+
+  var _newMovie = function(input){
     var data = JSON.stringify(input);
  
     $.ajax({
@@ -84,14 +89,17 @@ APP.Movies = (function() {
       data: data
     });
   }
+
  
   return {
     init: init,
-    getMovies: getMovies,
   }
+
 
 })($);
 
 $(document).ready(function(){
-  APP.Movies.init();
+  if ( $("body").data("controller") === "movies") {
+    APP.Movies.init();
+  }
 });

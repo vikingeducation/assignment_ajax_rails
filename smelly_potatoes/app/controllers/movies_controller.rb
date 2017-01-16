@@ -17,12 +17,10 @@ class MoviesController < ApplicationController
       if @movie.save
         flash[:alert] = "MADE A MOVIE"
         format.html {redirect_to :back}
-        format.js {render :index}
         format.json
       else
         flash.now[:alert] = "DID NOT MAKE A MOVIE"
         format.html { render :index }
-        format.js {head :none}
         format.json
       end
     end

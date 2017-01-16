@@ -1,0 +1,42 @@
+<h1> Smelly Potatoes Reviews!!!! </h1>
+
+<%= form_for Review.new, { html: { id: "new-review" } } do |f| %>
+
+  <%= f.label :reviewer_name, "Reviewer" %>
+  <%= f.text_field :reviewer_name %>
+  <br>
+
+  <%= f.label :title, "Title" %>  
+  <%= f.text_field :title %>
+  <br>
+
+  <%= f.label :reviewer_text, "Text" %>
+  <%= f.text_field :review_text %>
+  <br>
+
+  <%= f.label :movie, "Movie" %>
+  <%= f.collection_select :movie, @movies, :id, :title %>
+  <br>
+
+  <%= f.button "Create Review!",  id: "review-button" %>
+
+<% end %>
+
+<br>
+<br>
+
+<h2>All Reviews</h2>
+
+<table data-id="movie-table">
+  <tr>
+    <th>Movie Reviewed</th>
+    <th>Reviewer</th>
+    <th>Title</th>
+    <th>Review Text</th>
+    <th>Review Date</th>
+    <th>Delete</th>
+  </tr>
+  
+</table>
+
+
