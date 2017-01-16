@@ -10,7 +10,8 @@
   <tbody id="movie-list"></tbody>
 </table>
 
-<%= form_for Movie.new, data: { ajaxremote: true }, id:'jquery-form' do |f| %>
+<h2>JSON POST Request (handled with jQuery)</h2>
+<%= form_for Movie.new, data: { ajaxremote: true } do |f| %>
   <%= f.text_field :title %>
   <%= f.date_field :release_date %>
   <%= f.submit %>
