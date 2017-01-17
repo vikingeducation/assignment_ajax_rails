@@ -1,0 +1,21 @@
+<h1>Reviews</h1>
+
+<%= render partial: 'form' %>
+
+<table>
+  <thead>
+    <tr>
+      <td>Movie Name</td>
+      <td>Reviewer Name</td>
+      <td>Title</td>
+      <td>Review</td>
+      <td>Review Date</td>
+      <td>Delete</td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @reviews %>
+  </tbody>
+
+</table>

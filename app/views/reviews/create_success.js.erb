@@ -1,0 +1,8 @@
+if ($('body').data('controller') === "reviews") {
+  var $reviewRow = $("<%= j( render partial: 'review', locals: { review: @review }) %>");
+  $('tbody').prepend($reviewRow);
+
+  $('#flash-messages').html("<%= j(render partial: 'shared/flash') %>").slideDown();
+
+  $('#new_review input').val('');
+}
