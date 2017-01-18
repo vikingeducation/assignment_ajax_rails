@@ -1,0 +1,18 @@
+<h1>Movies</h1>
+
+<table id="movie-table">
+  <thead>
+    <tr>
+      <th>Movie name</th>
+      <th>Release date</th>
+    </tr>
+  </thead>
+  <tbody id="movie-list"></tbody>
+</table>
+
+<h2>JSON POST Request (handled with jQuery)</h2>
+<%= form_for @movie, data: { ajaxremote: true } do |f| %>
+  <%= f.text_field :title %>
+  <%= f.date_field :release_date %>
+  <%= f.submit %>
+<% end %>

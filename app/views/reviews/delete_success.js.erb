@@ -1,0 +1,6 @@
+if ($('body').data('controller') === "reviews") {
+  var $reviewRow = $('tr[data-id=<%= @review.id %>]');
+  $reviewRow.remove();
+
+  $('#flash-messages').html("<%= j(render partial: 'shared/flash') %>").slideDown();
+}

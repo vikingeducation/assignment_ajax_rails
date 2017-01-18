@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AssignmentRailsApi</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application'%>
+  </head>
+
+  <body data-controller="<%= controller_name %>">
+    <div id="flash-messages">
+      <%= render partial: "shared/flash" %>
+    </div>
+    <%= yield %>
+  </body>
+</html>
