@@ -1,0 +1,25 @@
+<h1>Smelly Potatoes Movies</h1>
+
+<h3>Create a Movie</h3>
+<%= form_for @movie, data: { ajaxremote: true } do |f| %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.hidden_field :release_date, :value => Date.today %>
+
+  <%= f.submit "Create Movie" %>
+
+<% end %>
+
+<h3>All Movies</h3>
+<table data-content="movies">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Release Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+  </tbody>
+</table>

@@ -1,0 +1,18 @@
+//new row
+var newReview = "<%= j(render partial: 'review_row', locals: { review: @review }) %>"
+
+var $newRow = $(newReview);
+
+var $body = $('tbody');
+
+$body.prepend($newRow);
+
+
+// clearing form
+$('form').get(0).reset();
+
+
+//display flash message
+var $flash = "<%= j(render partial: 'layouts/flash') %>"
+
+$('body').prepend($flash);
