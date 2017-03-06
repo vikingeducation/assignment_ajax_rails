@@ -11,6 +11,7 @@
   <body data-controller="<%= controller_name %>">
   <div class="container">
     <div class="row">
+      <%= render partial: 'layouts/flash' %>
       <%= yield %>
     </div>
   </div>

@@ -1,0 +1,41 @@
+<h1>Smelly Potatoes Reviews</h1>
+
+<h3>Create a Review</h3>
+<%= form_for @review, remote: true do |f| %>
+
+  <%= f.label :reviewer_name %>
+  <%= f.text_field :reviewer_name %><br>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %><br>
+
+  <%= f.label :review_text %>
+  <%= f.text_field :review_text %><br>
+
+  <%= f.label 'Movie' %>
+  <%= f.collection_select :movie_id, Movie.order(:title), :id, :title, include_blank: true %><br>
+
+  <%= f.hidden_field :review_date, :value => Date.today %>
+
+  <%= f.submit "Create Review" %>
+
+<% end %>
+
+<h3>All Reviews</h3>
+<table class="table table-striped" data-content="reviews">
+  <thead>
+    <tr>
+      <th>Movie Reviewed</th>
+      <th>Reviewer</th>
+      <th>Title</th>
+      <th>Review Text</th>
+      <th>Review Date</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reviews.each do |review| %>
+      <%= render partial: 'review_row', locals: { review: review } %>
+    <% end %>
+  </tbody>
+</table>
