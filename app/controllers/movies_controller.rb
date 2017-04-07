@@ -14,6 +14,7 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
+    @movie.release_date = Time.now
 
     if @movie.save
       flash[:success] = "Movie Added"
@@ -42,8 +43,7 @@ class MoviesController < ApplicationController
     def movie_params
 
       params.require(:movie)
-            .permit(:title,
-                  release_date: Time.now  )
+            .permit(:title)
     end
 
 end

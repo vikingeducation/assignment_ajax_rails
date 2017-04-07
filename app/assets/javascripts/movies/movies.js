@@ -5,8 +5,8 @@ var MovieModule = (function(){
   var _addMovieElement = function(movie){
     var $fullRow = $('<tr></tr>'),
         $title = $('<td></td>').text(movie.title),
-        // cleanedDate = _cleanDate(movie.release_date),
-        cleanedDate = movie.release_date,
+        cleanedDate = _cleanDate(movie.release_date),
+        // cleanedDate = movie.release_date,
         $releaseDate = $('<td></td>').text(cleanedDate);
 
         $fullRow.append($title)
@@ -38,25 +38,25 @@ var MovieModule = (function(){
 
   var _attachFormListener = function(){
     $("form[data-ajaxremote='true']").submit(function(event){
+      console.log('_attachFormListener')
       event.preventDefault();
 
       var $el = $(event.target),
-          $formData = $el.serializeArray();
+          url = $el.attr("action"),
+          formData = $el.serializeArray();
 
-          window.xx = $el
-          window.yy = $formData
-
-      _ajaxCreateMovie();
+      _ajaxCreateMovie(url, formData);
+      $el.trigger("reset");
     });
   };
 
-  var _ajaxCreateMovie = function(){
+  var _ajaxCreateMovie = function(targetURL, formData){
     $.ajax({
-      url: $el.attr("action"),
+      url: targetURL,
       method: "POST",
       dataType: "json",
+      data: formData,
       success: function(movie){
-        window.aa = movie
         _addMovieElement(movie);
       }
     });
