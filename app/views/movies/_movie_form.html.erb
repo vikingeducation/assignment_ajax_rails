@@ -1,0 +1,11 @@
+<%= form_for movie, data: { ajaxremote: true } do |f| %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <br>
+  <br>
+
+  <%= f.submit %>
+
+<% end %>
