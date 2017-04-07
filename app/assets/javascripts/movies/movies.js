@@ -4,8 +4,10 @@ var MovieModule = (function(){
 
   var _addMovieElement = function(movie){
     var $fullRow = $('<tr></tr>'),
-        $title = $('<td></td>').text(movie.title);
-        $releaseDate = $('<td></td>').text(movie.release_date),
+        $title = $('<td></td>').text(movie.title),
+        cleanedDate = _cleanDate(movie.release_date),
+        $releaseDate = $('<td></td>').text(cleanedDate);
+
         $fullRow.append($title)
                 .append($releaseDate);
 
@@ -16,6 +18,10 @@ var MovieModule = (function(){
     moviesJSON.forEach(function(movie){
       _addMovieElement(movie);
     });
+  };
+
+  var _cleanDate = function(timeObj){
+    return timeObj.split('T')[0];
   };
 
   var getMovies = function(){
