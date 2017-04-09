@@ -8,8 +8,8 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    
+  <body data-controller="<%= controller_name %>">
+
     <div class="flash">
       <%= render partial: "shared/flash" %>
     </div>

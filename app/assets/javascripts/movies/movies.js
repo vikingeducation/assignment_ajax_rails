@@ -1,12 +1,12 @@
-var MovieModule = (function(){
+// Rails App
+var RAPP = {};
 
-  var _$movieList = $('#movie-list');
+RAPP.MovieModule = (function(){
 
   var _addMovieElement = function(movie){
     var $fullRow = $('<tr></tr>'),
         $title = $('<td></td>').text(movie.title),
         cleanedDate = _cleanDate(movie.release_date),
-        // cleanedDate = movie.release_date,
         $releaseDate = $('<td></td>').text(cleanedDate);
 
         $fullRow.append($title)
@@ -38,7 +38,6 @@ var MovieModule = (function(){
 
   var _attachFormListener = function(){
     $("form[data-ajaxremote='true']").submit(function(event){
-      console.log('_attachFormListener')
       event.preventDefault();
 
       var $el = $(event.target),
@@ -75,5 +74,8 @@ var MovieModule = (function(){
 
 
 $(document).ready(function(){
-  MovieModule.init();
+  if ( $("body").data("controller") === 'movies' ){
+    console.log("movie module init ran")
+    RAPP.MovieModule.init();
+  }
 });
