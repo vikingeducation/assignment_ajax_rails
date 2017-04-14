@@ -1,0 +1,3 @@
+var $reviewRow = $("<%= j(render partial: "review", locals: { review: @review } ) %>");
+
+$('#review-list').prepend($reviewRow);

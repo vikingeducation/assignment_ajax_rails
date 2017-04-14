@@ -6,35 +6,37 @@ class ReviewsController < ApplicationController
     @review_options = Movie.all.map do |movie|
         [movie.title, movie.id]
     end
+
   end
 
   def create
     @review = Review.new(review_params)
     @review.review_date = Time.now
-    # @review.movie_id = 42
 
     if @review.save
       flash[:success] = "Review Added"
 
       respond_to do |format|
         format.html { redirect_to reviews_path }
-        # format.js { render reviews_path }
+        format.js { render :create_success }
       end
 
     else
       flash[:error] = "Review couldn't be added"
 
       respond_to do |format|
-        format.html { redirect_to reviews_path }
-        format.js {}
+        format.html { render :new }
+        format.js { render :new}
       end
 
     end
   end
 
-  def delete
+  def destroy
     @review = Review.find(params[:id])
     @review.destroy
+
+    redirect_to :back
   end
 
   private
