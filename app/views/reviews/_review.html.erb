@@ -1,4 +1,4 @@
-<tr>
+<tr review-id="<%= review.id %>">
   <td>
     <%= get_movie_title(review.movie_id) %>
   </td>
@@ -16,6 +16,6 @@
   </td>
   <td>
 
-    <%= link_to "delete", review, method: :delete %>
+    <%= link_to "delete", review, method: :delete, remote: true %>
   </td>
 </tr>
