@@ -35,13 +35,17 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review_id = @review.id
-    @review.destroy
+    if @review.destroy
+      respond_to do |format|
+        format.html { redirect_to reviews_path, flash: { success: 'Review Destroyed'} }
+        format.js {  }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to reviews_path, flash: { error: 'Review Not Destroyed'} }
+        format.js {  }
+      end
 
-    respond_to do |format|
-      format.html { redirect_to reviews_path }
-      # format.js { render @review }
-      # format.js { }
-      format.js { render :destroy }
     end
   end
 
