@@ -39,8 +39,9 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to reviews_path }
+      # format.js { render @review }
       # format.js { }
-      format.js { render @review }
+      format.js { render :destroy }
     end
   end
 

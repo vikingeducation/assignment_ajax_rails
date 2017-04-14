@@ -8,7 +8,6 @@ class MoviesController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @movies, status: 201 }
-      # format.js
     end
   end
 
@@ -23,7 +22,6 @@ class MoviesController < ApplicationController
         format.html { redirect_to movies_path }
         format.json { render json: @movie,
                             status: :created }
-        # format.js { render :index } #aka index.js.erb
       end
 
     else
@@ -33,7 +31,6 @@ class MoviesController < ApplicationController
         format.html { redirect_to movies_path }
         format.json { render nothing: true,
                             status: 400 }
-        # format.js { render :#asdf.js.erb}
       end
 
     end
