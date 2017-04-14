@@ -1,3 +1,6 @@
 var rowId = <%= @review_id %>;
 var $reviewRow = $("[review-id=" + rowId + "]");
 $reviewRow.remove();
+
+var $flash = $('<%= j(render :partial => "shared/flash") %>');
+$('.flash').html($flash);

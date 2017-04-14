@@ -38,12 +38,12 @@ class ReviewsController < ApplicationController
     if @review.destroy
       respond_to do |format|
         format.html { redirect_to reviews_path, flash: { success: 'Review Destroyed'} }
-        format.js {  }
+        format.js { flash[:success] = "Review Destroyed!!" }
       end
     else
       respond_to do |format|
         format.html { redirect_to reviews_path, flash: { error: 'Review Not Destroyed'} }
-        format.js {  }
+        format.js { flash.now[:error] = "Review Not Destroyed" }
       end
 
     end
