@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   # respond_to :html, :js   # all actions covered
   # respond_to :json, :only => [:create, :show]
   def index
-    @movies = Movie.all
+    @movies = Movie.all.order(created_at: :desc)
     @movie = Movie.new
 
     respond_to do |format|
@@ -41,7 +41,6 @@ class MoviesController < ApplicationController
 
   private
     def movie_params
-
       params.require(:movie)
             .permit(:title)
     end

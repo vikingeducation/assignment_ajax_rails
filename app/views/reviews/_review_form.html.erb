@@ -1,0 +1,19 @@
+<%= form_for review, remote: true do |f| %>
+
+<%= f.label :Reviewer %>
+<%= f.text_field :reviewer_name %>
+
+<%= f.label :Title %>
+<%= f.text_field :title %>
+
+<%= f.label :Text %>
+<%= f.text_field :review_text %>
+<br>
+
+<%= f.label :Movie %>
+<%= f.select(:movie_id, @review_options) %>
+
+<br>
+<%= f.submit %>
+
+<% end %>
