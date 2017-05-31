@@ -1,0 +1,10 @@
+var row = "<%= j(render partial: 'review', locals: { review: @review}) %>";
+var $row = $(row);
+
+var $table = ReviewModule.getReviewTable();
+var $form = ReviewModule.getReviewForm()[0];
+$form.reset();
+
+$table.prepend($row);
+
+
