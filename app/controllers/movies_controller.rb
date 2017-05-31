@@ -17,11 +17,13 @@ class MoviesController < ApplicationController
         format.html
         format.json { render json: @movie, status: :created}
       end
+      flash[:success] = "Success! Movie created"
     else
       respond_to do |format|
         format.html
         format.json { render nothing: true, status: 400}
       end
+      flash[:error] = "Sorry, we couldn't create a movie"
     end
   end
   private

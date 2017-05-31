@@ -1,11 +1,16 @@
+var $flash = $("<%= j(render partial: 'shared/flash') %>");
 var row = "<%= j(render partial: 'review', locals: { review: @review}) %>";
 var $row = $(row).hide();
 
 var $table = ReviewModule.getReviewTable();
 var $form = ReviewModule.getReviewForm()[0];
+
 $form.reset();
 
 $table.prepend($row)
-$row.fadeIn(1000);
+$row.fadeIn(800);
+
+$('body').prepend($flash)
+SiteModule.init();
 
 

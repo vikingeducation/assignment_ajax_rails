@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       format.html { render :index}
-      format.json {render json: @reviews.as_json(include: {movie: {only: :title}})}
+      format.json {render json: @reviews.as_json(include: {movie: {only: :title}}), status: :ok}
     end
 
   end
@@ -15,12 +15,17 @@ class ReviewsController < ApplicationController
     if @review.save
       respond_to do |format|
         format.html { redirect_to reviews_path}
-        format.js { render :create_success }
+        format.js do
+          render :create
+          flash[:success] = "Success, review created!"
+        end
+
       end
+      flash[:success] = "Success! Review created"
     else
       respond_to do |format|
         format.html { render :new}
-        format.js { render :new}
+        format.js { render :new, status: 400}
       end
     end
   end
@@ -31,12 +36,12 @@ class ReviewsController < ApplicationController
     if @review.destroy
       respond_to do |format|
         format.html {redirect_to reviews_path}
-        format.js { render :destroy_success}
+        format.js { render :destroy, status: :ok}
       end
     else
       respond_to do |format|
         format.html { render :index}
-        format.js { render :index}
+        format.js { render :index, status: 400}
       end
     end
   end
