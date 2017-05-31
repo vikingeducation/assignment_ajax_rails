@@ -1,0 +1,5 @@
+var $row = $(ReviewModule.getReviewRow("<%= j(@id) %>"));
+var promise = $row.fadeOut(800).promise();
+promise.done(function(e){
+  $row.remove();
+})

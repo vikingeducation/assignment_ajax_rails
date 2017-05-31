@@ -1,0 +1,28 @@
+<h2>Create a Review</h2>
+<%= form_for @review, remote: true, data: {form: 'review'} do |f| %>
+  <%= f.label :reviewer_name %>
+  <%= f.text_field :reviewer_name %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :review_text %>
+  <%= f.text_field :review_text %>
+  <%= f.label :movie_id %>
+  <%= f.collection_select :movie_id, Movie.all, :id, :title %>
+  <%= f.submit %>
+<% end %>
+<h2>All Reviews</h2>
+<table data-content="reviews">
+  <thead>
+    <tr>
+      <td>Movie Reviewed</td>
+      <td>Reviewer</td>
+      <td>Title</td>
+      <td>Review Text</td>
+      <td>Review Date</td>
+      <td>Delete</td>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @reviews %>
+  </tbody>
+</table>
