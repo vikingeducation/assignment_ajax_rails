@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   def index
-    @reviews = Review.includes(:movie).order('review_date DESC');
+    @reviews = Review.includes(:movie).order('review_date DESC').page(params[:page]).per_page(10)
     @review = Review.new
 
     respond_to do |format|
@@ -46,5 +46,6 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:movie_id, :title, :reviewer_name, :review_text)
   end
+
 
 end

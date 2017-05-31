@@ -3,10 +3,14 @@
 // # You can use CoffeeScript in this file: http: //coffeescript.org/
 
 var MovieModule = (function() {
+  var _reviewPage;
+
   var init = function() {
+    _reviewPage = 1;
     _loadMovieListings();
     _listenForFormSubmission();
     _loadReviews();
+    _setUpInfiniteScroll();
   }
 
   var _listenForFormSubmission = function() {
@@ -60,18 +64,33 @@ var MovieModule = (function() {
     }
   }
 
+  var _setUpInfiniteScroll = function() {
+    // this triggers whenever you scroll
+    $(window).scroll(function() {
+      // if you're at the bottom of the page
+      if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+        _loadReviews();
+      }
+    });
+  }
+
+
   var _loadReviews = function() {
     if (_getReviewTable().length) {
       $.ajax({
         url: window.location.origin + '/reviews',
         type: 'GET',
         dataType: 'json',
+        data: {
+          page: _reviewPage
+        },
         success: function(data) {
-          console.log('success');
           console.log(data);
+          _reviewPage++;
           $.each(data, function(i, review) {
             _addRowToReviewTable(review);
-          })
+          });
+
         },
         error: function(a, b, c) {
           console.log(a, b, c);
@@ -81,22 +100,30 @@ var MovieModule = (function() {
   }
 
   var _addRowToReviewTable = function(review) {
+    // <a data-confirm="Are you sure you want to delete this?" data-remote="true" rel="nofollow" data-method="delete" href="/reviews/117">Delete</a>
     var $table = _getReviewTable();
     var date = _convertToHumanDate(new Date(review.review_date));
-    var $row = $('<tr>');
+    var $row = $('<tr>').attr('data-review-id', review.id);
     var $title = $('<td>').text(review.title);
     var $movie = $('<td>').text(review.movie.title);
     var $reviewer = $('<td>').text(review.reviewer_name);
     var $text = $('<td>').text(review.review_text);
-    var $delete = $('<td>').text("delete");
+    var $link = $('<a>').attr({
+      href: '/reviews/' + review.id,
+      'data-method': 'delete',
+      'data-remote': 'true',
+      'data-confirm': 'Are you sure you want to delete this?'
+    }).text('Delete');
+    var $delete = $('<td>').append($link);
 
     $row.append($movie)
       .append($reviewer)
       .append($title)
       .append($text)
-      .append(date);
+      .append(date)
+      .append($delete);
 
-    $table.find('tbody').prepend($row);
+    $table.find('tbody').append($row);
   }
 
   var _addRowToMovieTable = function(movie) {
