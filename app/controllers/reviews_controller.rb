@@ -1,7 +1,12 @@
 class ReviewsController < ApplicationController
   def index
-    @reviews = Review.all
+    @reviews = Review.includes(:movie).order('review_date DESC');
     @review = Review.new
+
+    respond_to do |format|
+      format.html { render :index}
+      format.json {render json: @reviews.as_json(include: {movie: {only: :title}})}
+    end
 
   end
 
@@ -22,10 +27,11 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:id])
+    @id = params[:id]
     if @review.destroy
       respond_to do |format|
         format.html {redirect_to reviews_path}
-        format.js { redirect_to reviews_path}
+        format.js { render :destroy_success}
       end
     else
       respond_to do |format|
