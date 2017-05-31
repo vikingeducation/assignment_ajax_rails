@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AssignmentRailsApi</title>
+    <title>Smelly PotatoesMovies</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body>
+  <body data-controller="<%= controller_name %>">
+    <h1>Smelly Potatoes Movies</h1>
     <%= yield %>
   </body>
 </html>
